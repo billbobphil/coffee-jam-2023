@@ -6,7 +6,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_4qhye"]
 radius = 16.0312
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 position = Vector2(16, 16)
 script = ExtResource("1_fwv3v")
 

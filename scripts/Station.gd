@@ -6,6 +6,8 @@ var stationCanBeInteractedWith = false;
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	keyPromptSprite = get_node("Key Prompt Sprite");
+	var player = get_tree().get_first_node_in_group("Player")
+	player.interaction_triggered.connect(_on_player_interaction_triggered)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
