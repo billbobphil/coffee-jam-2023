@@ -1,13 +1,28 @@
-[gd_scene load_steps=3 format=3 uid="uid://7je3nu0pdsus"]
+[gd_scene load_steps=4 format=3 uid="uid://7je3nu0pdsus"]
 
 [ext_resource type="PackedScene" uid="uid://bhasvup0wqgs5" path="res://scenes/player.tscn" id="1_fb7x5"]
-[ext_resource type="PackedScene" uid="uid://mkw6mia3fmqe" path="res://scenes/station.tscn" id="2_ss5ap"]
+[ext_resource type="PackedScene" uid="uid://c6t81pnweu3om" path="res://scenes/table.tscn" id="2_4o8w4"]
+[ext_resource type="Script" path="res://scripts/WallGenerator.gd" id="4_nmx7f"]
 
 [node name="Demo" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_fb7x5")]
+position = Vector2(164, 74)
 
-[node name="Station" parent="." instance=ExtResource("2_ss5ap")]
+[node name="Table" parent="." instance=ExtResource("2_4o8w4")]
+position = Vector2(52, 132)
 
-[node name="Station2" parent="." instance=ExtResource("2_ss5ap")]
-position = Vector2(155, 243)
+[node name="Table2" parent="." instance=ExtResource("2_4o8w4")]
+position = Vector2(243, 165)
+
+[node name="Table3" parent="." instance=ExtResource("2_4o8w4")]
+position = Vector2(489, 106)
+
+[node name="Table4" parent="." instance=ExtResource("2_4o8w4")]
+position = Vector2(158, 305)
+
+[node name="Table5" parent="." instance=ExtResource("2_4o8w4")]
+position = Vector2(442, 253)
+
+[node name="WallGenerator" type="Node2D" parent="."]
+script = ExtResource("4_nmx7f")

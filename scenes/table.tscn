@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://c6t81pnweu3om"]
+
+[ext_resource type="Texture2D" uid="uid://df3uxqwbc6ncl" path="res://art/32x32-circle.png" id="1_84ujl"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0llar"]
+radius = 24.1868
+
+[node name="Table" type="StaticBody2D"]
+position = Vector2(129, 160)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("1_84ujl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_0llar")
