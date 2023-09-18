@@ -24,4 +24,3 @@ func _process(delta):
 		interaction_triggered.emit()
 	if(dashTimer > DASH_COOLDOWN && !isDashAvailable):
 		isDashAvailable = true;
-	

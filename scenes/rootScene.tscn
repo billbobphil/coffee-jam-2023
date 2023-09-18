@@ -1,13 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://7je3nu0pdsus"]
+[gd_scene load_steps=6 format=3 uid="uid://7je3nu0pdsus"]
 
+[ext_resource type="Script" path="res://scripts/gameManager.gd" id="1_84sy3"]
 [ext_resource type="PackedScene" uid="uid://bhasvup0wqgs5" path="res://scenes/player.tscn" id="1_fb7x5"]
-[ext_resource type="PackedScene" path="res://scenes/table.tscn" id="2_4o8w4"]
+[ext_resource type="PackedScene" uid="uid://c6t81pnweu3om" path="res://scenes/table.tscn" id="2_4o8w4"]
 [ext_resource type="Script" path="res://scripts/WallGenerator.gd" id="4_nmx7f"]
+[ext_resource type="PackedScene" uid="uid://b1xl2nurgndxf" path="res://scenes/camera_trigger.tscn" id="5_yqnp0"]
 
 [node name="Demo" type="Node2D"]
+script = ExtResource("1_84sy3")
 
 [node name="Player" parent="." instance=ExtResource("1_fb7x5")]
-position = Vector2(164, 74)
+position = Vector2(303, 402)
 
 [node name="Table" parent="." instance=ExtResource("2_4o8w4")]
 position = Vector2(99, 452)
@@ -26,3 +29,27 @@ position = Vector2(489, 573)
 
 [node name="WallGenerator" type="Node2D" parent="."]
 script = ExtResource("4_nmx7f")
+
+[node name="StorefrontCamera" type="Camera2D" parent="."]
+position = Vector2(319, 542)
+
+[node name="KitchenCamera" type="Camera2D" parent="."]
+position = Vector2(319, 181)
+
+[node name="CameraTriggers" type="Node2D" parent="."]
+
+[node name="KitchenCameraTriggerLeft" parent="CameraTriggers" instance=ExtResource("5_yqnp0")]
+
+[node name="KitchenCameraTriggerRight" parent="CameraTriggers" instance=ExtResource("5_yqnp0")]
+position = Vector2(531, 350)
+
+[node name="StorefrontCameraTriggerLeft" parent="CameraTriggers" instance=ExtResource("5_yqnp0")]
+position = Vector2(10, 390)
+
+[node name="StorefrontCameraTriggerRight2" parent="CameraTriggers" instance=ExtResource("5_yqnp0")]
+position = Vector2(532, 390)
+
+[connection signal="body_entered" from="CameraTriggers/KitchenCameraTriggerLeft" to="." method="_on_change_camera" binds= ["kitchen"]]
+[connection signal="body_entered" from="CameraTriggers/KitchenCameraTriggerRight" to="." method="_on_change_camera" binds= ["kitchen"]]
+[connection signal="body_entered" from="CameraTriggers/StorefrontCameraTriggerLeft" to="." method="_on_change_camera" binds= ["storefront"]]
+[connection signal="body_entered" from="CameraTriggers/StorefrontCameraTriggerRight2" to="." method="_on_change_camera" binds= ["storefront"]]
