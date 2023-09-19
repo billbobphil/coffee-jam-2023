@@ -1,0 +1,31 @@
+Coffee Palette
+
+Darkest:
+#20130e
+
+#4c2c21
+
+#78462c
+
+#ab6c46
+
+#d19e79
+
+Lightest
+#f2e3c3 
+
+
+
+Spooky Palette
+
+Blackish:
+#1a2129
+
+Purple:
+#312137
+
+Maroon:
+#512839
+
+Almost Pink:
+#713141
