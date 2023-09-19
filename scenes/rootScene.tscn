@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/gameManager.gd" id="1_84sy3"]
 [ext_resource type="PackedScene" uid="uid://bhasvup0wqgs5" path="res://scenes/player.tscn" id="1_fb7x5"]
-[ext_resource type="PackedScene" path="res://scenes/table.tscn" id="2_4o8w4"]
+[ext_resource type="PackedScene" uid="uid://c6t81pnweu3om" path="res://scenes/table.tscn" id="2_4o8w4"]
 [ext_resource type="Script" path="res://scripts/WallGenerator.gd" id="4_nmx7f"]
 [ext_resource type="PackedScene" uid="uid://b1xl2nurgndxf" path="res://scenes/camera_trigger.tscn" id="5_yqnp0"]
 [ext_resource type="PackedScene" uid="uid://mkw6mia3fmqe" path="res://scenes/station.tscn" id="6_j5wo5"]
@@ -72,9 +72,12 @@ stationName = "Milk Steamer"
 position = Vector2(564, 68)
 stationName = "Espresso"
 
-[node name="CustomerManager" type="Node2D" parent="."]
-position = Vector2(581, 529)
+[node name="CustomerManager" type="Node2D" parent="." node_paths=PackedStringArray("tables")]
 script = ExtResource("7_buhyn")
+tables = [NodePath("../Tables/Table"), NodePath("../Tables/Table2"), NodePath("../Tables/Table3"), NodePath("../Tables/Table4"), NodePath("../Tables/Table5")]
+
+[node name="SpawnPoint" type="Node2D" parent="CustomerManager"]
+position = Vector2(777, 520)
 
 [connection signal="body_entered" from="CameraTriggers/KitchenCameraTriggerLeft" to="." method="_on_change_camera" binds= ["kitchen"]]
 [connection signal="body_entered" from="CameraTriggers/KitchenCameraTriggerRight" to="." method="_on_change_camera" binds= ["kitchen"]]
