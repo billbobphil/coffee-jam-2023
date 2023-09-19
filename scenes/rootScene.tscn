@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://7je3nu0pdsus"]
+[gd_scene load_steps=9 format=3 uid="uid://7je3nu0pdsus"]
 
 [ext_resource type="Script" path="res://scripts/gameManager.gd" id="1_84sy3"]
 [ext_resource type="PackedScene" uid="uid://bhasvup0wqgs5" path="res://scenes/player.tscn" id="1_fb7x5"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://b1xl2nurgndxf" path="res://scenes/camera_trigger.tscn" id="5_yqnp0"]
 [ext_resource type="PackedScene" uid="uid://mkw6mia3fmqe" path="res://scenes/station.tscn" id="6_j5wo5"]
 [ext_resource type="Script" path="res://scripts/CustomerManager.gd" id="7_buhyn"]
+[ext_resource type="Script" path="res://scripts/OrderManager.gd" id="8_gsm2p"]
 
 [node name="Demo" type="Node2D"]
 script = ExtResource("1_84sy3")
@@ -39,19 +40,19 @@ position = Vector2(532, 390)
 [node name="Tables" type="Node2D" parent="."]
 
 [node name="Table" parent="Tables" instance=ExtResource("2_4o8w4")]
-position = Vector2(99, 452)
+position = Vector2(176, 477)
 
 [node name="Table2" parent="Tables" instance=ExtResource("2_4o8w4")]
-position = Vector2(290, 485)
+position = Vector2(304, 584)
 
 [node name="Table3" parent="Tables" instance=ExtResource("2_4o8w4")]
-position = Vector2(536, 426)
+position = Vector2(581, 560)
 
 [node name="Table4" parent="Tables" instance=ExtResource("2_4o8w4")]
-position = Vector2(205, 625)
+position = Vector2(48, 657)
 
 [node name="Table5" parent="Tables" instance=ExtResource("2_4o8w4")]
-position = Vector2(489, 573)
+position = Vector2(475, 477)
 
 [node name="Stations" type="Node2D" parent="."]
 scale = Vector2(0.984984, 0.624815)
@@ -77,7 +78,10 @@ script = ExtResource("7_buhyn")
 tables = [NodePath("../Tables/Table"), NodePath("../Tables/Table2"), NodePath("../Tables/Table3"), NodePath("../Tables/Table4"), NodePath("../Tables/Table5")]
 
 [node name="SpawnPoint" type="Node2D" parent="CustomerManager"]
-position = Vector2(777, 520)
+position = Vector2(304, 789)
+
+[node name="OrderManager" type="Node2D" parent="."]
+script = ExtResource("8_gsm2p")
 
 [connection signal="body_entered" from="CameraTriggers/KitchenCameraTriggerLeft" to="." method="_on_change_camera" binds= ["kitchen"]]
 [connection signal="body_entered" from="CameraTriggers/KitchenCameraTriggerRight" to="." method="_on_change_camera" binds= ["kitchen"]]
