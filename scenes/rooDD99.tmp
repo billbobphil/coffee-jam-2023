@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://scripts/WallGenerator.gd" id="4_nmx7f"]
 [ext_resource type="PackedScene" uid="uid://b1xl2nurgndxf" path="res://scenes/camera_trigger.tscn" id="5_yqnp0"]
 [ext_resource type="PackedScene" uid="uid://mkw6mia3fmqe" path="res://scenes/station.tscn" id="6_j5wo5"]
-[ext_resource type="Script" path="res://scripts/CustomerManager.gd" id="7_buhyn"]
+[ext_resource type="Script" path="res://scripts/CustomerSpawner.gd" id="7_072xg"]
 
 [node name="Demo" type="Node2D"]
 script = ExtResource("1_84sy3")
@@ -72,9 +72,9 @@ stationName = "Milk Steamer"
 position = Vector2(564, 68)
 stationName = "Espresso"
 
-[node name="CustomerManager" type="Node2D" parent="."]
+[node name="CustomerSpawnPoint" type="Node2D" parent="."]
 position = Vector2(581, 529)
-script = ExtResource("7_buhyn")
+script = ExtResource("7_072xg")
 
 [connection signal="body_entered" from="CameraTriggers/KitchenCameraTriggerLeft" to="." method="_on_change_camera" binds= ["kitchen"]]
 [connection signal="body_entered" from="CameraTriggers/KitchenCameraTriggerRight" to="." method="_on_change_camera" binds= ["kitchen"]]

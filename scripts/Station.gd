@@ -2,6 +2,7 @@ extends StaticBody2D
 
 var keyPromptSprite;
 var stationCanBeInteractedWith = false;
+@export var stationName: String = "";
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -30,4 +31,4 @@ func _on_area_2d_body_exited(body):
 
 func _on_player_interaction_triggered():
 	if(stationCanBeInteractedWith):
-		print("interacting with coffee station")
+		print("interacting with station: " + stationName)
