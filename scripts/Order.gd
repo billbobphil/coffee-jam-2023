@@ -12,6 +12,8 @@ var shouldFloat : bool = false;
 var initialPositionY : float;
 var direction : int = 1;
 var isOrderOnGoing : bool = false;
+var orderType : OrderManager.orderTypes;
+var customer : Customer;
 
 signal order_expired;
 signal order_fulfilled;
@@ -26,6 +28,7 @@ func startOrderTimer():
 	isOrderOnGoing = true;
 	shouldFloat = true;
 	initialPositionY = position.y;
+	print("Order type: " + str(orderType));
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

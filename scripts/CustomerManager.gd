@@ -3,16 +3,13 @@ extends Node2D
 var customerScene = preload("res://scenes/customer.tscn");
 var customers : Array[Customer] = [];
 @export var tables: Array[Table]
-var rng = RandomNumberGenerator.new()
 var spawnTimer : float = 0;
-@export var timeBetweenSpawns: float = 10;
+@export var timeBetweenSpawns: float = 1;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	print("Customer spawn point created");
 	print(tables);
-#	await get_tree().create_timer(2.0).timeout
-#	spawn_customer();
 	
 func _process(delta):
 	spawnTimer += delta;
@@ -39,9 +36,17 @@ func spawn_customer():
 	add_child(customer);
 	customer.position.x = spawnPoint.position.x;
 	customer.position.y = spawnPoint.position.y;
+	customer.spawnPosition = spawnPoint.position;
+	customer.customer_in_despawn.connect(_on_customer_in_despawn);
 	customers.push_back(customer);
 		
 	var tableToAssign: Table;
 	tableToAssign = availableTables.pick_random();
 	customer.assignTable(tableToAssign);
 	tableToAssign.isOccupied = true;
+
+func _on_customer_in_despawn(customer : Customer):
+	customers.erase(customer);
+	customer.assignedTable.isOccupied = false;
+	customer.queue_free();
+	pass
