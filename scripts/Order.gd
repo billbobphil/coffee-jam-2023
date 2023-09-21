@@ -14,14 +14,15 @@ var direction : int = 1;
 var isOrderOnGoing : bool = false;
 var orderType : OrderManager.orderTypes;
 var customer : Customer;
+var canOrderBeInteractedWith : bool = false;
 
 signal order_expired;
 signal order_fulfilled;
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
+	var player = get_tree().get_first_node_in_group("Player")
+	player.interaction_triggered.connect(_on_player_interaction_triggered);
+	
 func startOrderTimer():
 	print("Order timer started");
 	isOrderTimerStarted = true;
@@ -30,7 +31,6 @@ func startOrderTimer():
 	initialPositionY = position.y;
 	print("Order type: " + str(orderType));
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	orderTimerRoutine(delta);
 	floatRoutine(delta);
@@ -52,3 +52,35 @@ func floatRoutine(delta):
 		
 	if(position.y <= initialPositionY + yFloatMin):
 		direction = 1;
+
+func _on_area_2d_body_entered(body):
+	if(body.name == "Player"):
+		get_node("InteractSprite").visible = true;
+		canOrderBeInteractedWith = true;
+
+func _on_area_2d_body_exited(body):
+	if(body.name == "Player"):
+		get_node("InteractSprite").visible = false;
+		canOrderBeInteractedWith = false;
+		
+func _on_player_interaction_triggered(player: Player):
+	if(canOrderBeInteractedWith):
+		print("Player trying to deliver order");
+		print(player.heldProduct);
+		if(isOrderSatisfied(player.heldProduct)):
+			orderCompletedSuccessfully(player);
+		else:
+			print("Order not satisfied")
+		
+func isOrderSatisfied(deliveredProduct):
+	print("Analyzing if product is sufficient");
+	if(deliveredProduct == null):
+		return false;
+	return true;
+	
+func orderCompletedSuccessfully(player : Player):
+	print("Order satisfied");
+	isOrderOnGoing = false;
+	player.heldProduct = null;
+	customer.orderCompleted();
+	self.queue_free();

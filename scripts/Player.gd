@@ -1,11 +1,14 @@
 extends CharacterBody2D
 
+class_name Player;
+
 const SPEED = 100;
 const DASH_SPEED_MULTIPLIER = 25;
 const DASH_COOLDOWN = 1;
 signal interaction_triggered
 var isDashAvailable = true;
 var dashTimer = 0;
+var heldProduct : Product;
 
 func _physics_process(delta):
 	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
@@ -21,6 +24,11 @@ func _process(delta):
 	dashTimer += delta;
 	if(Input.is_action_just_pressed("interact")):
 		print("Player pressed interact")
-		interaction_triggered.emit()
+		interaction_triggered.emit(self)
 	if(dashTimer > DASH_COOLDOWN && !isDashAvailable):
 		isDashAvailable = true;
+
+func giveProduct(product : Product):
+	#TODO: lots of logic
+	heldProduct = product;
+	pass

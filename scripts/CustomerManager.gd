@@ -4,7 +4,7 @@ var customerScene = preload("res://scenes/customer.tscn");
 var customers : Array[Customer] = [];
 @export var tables: Array[Table]
 var spawnTimer : float = 0;
-@export var timeBetweenSpawns: float = 1;
+@export var timeBetweenSpawns: float = 10;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
