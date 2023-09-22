@@ -4,7 +4,7 @@ var keyPromptSprite;
 var stationCanBeInteractedWith = false;
 @export var stationName: String = "";
 
-var productType : Product.productTypes = Product.productTypes.coffee;
+@export var productType : Product.productTypes = Product.productTypes.coffee;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -34,5 +34,6 @@ func _on_player_interaction_triggered(player: Player):
 		print("interacting with station: " + stationName)
 		var product = Product.new();
 		product.type = productType;
-		player.giveProduct(product);
+		if(player.canAcceptProduct(product)):
+			player.giveProduct(product);
 		

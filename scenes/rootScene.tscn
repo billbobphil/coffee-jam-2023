@@ -57,21 +57,28 @@ position = Vector2(475, 477)
 [node name="Stations" type="Node2D" parent="."]
 scale = Vector2(0.984984, 0.624815)
 
-[node name="MilkAndSugarStation" parent="." instance=ExtResource("6_j5wo5")]
-position = Vector2(460, 298)
+[node name="SugarAndCreamStation" parent="Stations" instance=ExtResource("6_j5wo5")]
+position = Vector2(467.013, 476.941)
+scale = Vector2(1.01524, 1.60047)
 stationName = "Milk and Sugar"
+productType = 2
 
-[node name="CoffeeStation" parent="." instance=ExtResource("6_j5wo5")]
-position = Vector2(75, 95)
+[node name="CoffeeStation" parent="Stations" instance=ExtResource("6_j5wo5")]
+position = Vector2(76.1434, 152.045)
+scale = Vector2(1.01524, 1.60047)
 stationName = "Drip Coffee"
 
-[node name="SteamerStation" parent="." instance=ExtResource("6_j5wo5")]
-position = Vector2(319, 188)
+[node name="SteamerStation" parent="Stations" instance=ExtResource("6_j5wo5")]
+position = Vector2(323.863, 300.889)
+scale = Vector2(1.01524, 1.60047)
 stationName = "Milk Steamer"
+productType = 3
 
-[node name="EspressoStation" parent="." instance=ExtResource("6_j5wo5")]
-position = Vector2(564, 68)
+[node name="EspressoStation" parent="Stations" instance=ExtResource("6_j5wo5")]
+position = Vector2(572.598, 108.832)
+scale = Vector2(1.01524, 1.60047)
 stationName = "Espresso"
+productType = 0
 
 [node name="CustomerManager" type="Node2D" parent="." node_paths=PackedStringArray("tables")]
 script = ExtResource("7_buhyn")

@@ -2,7 +2,7 @@ extends Node2D
 
 class_name Order
 
-@export var orderTimeMax : float = 3;
+@export var orderTimeMax : float = 20;
 var orderTimer : float = 0;
 var isOrderTimerStarted : bool = false;
 @export var yFloatMax : float = 4;
@@ -12,9 +12,10 @@ var shouldFloat : bool = false;
 var initialPositionY : float;
 var direction : int = 1;
 var isOrderOnGoing : bool = false;
-var orderType : OrderManager.orderTypes;
 var customer : Customer;
 var canOrderBeInteractedWith : bool = false;
+var requiredOrder : Product;
+
 
 signal order_expired;
 signal order_fulfilled;
@@ -29,7 +30,7 @@ func startOrderTimer():
 	isOrderOnGoing = true;
 	shouldFloat = true;
 	initialPositionY = position.y;
-	print("Order type: " + str(orderType));
+	print("Order type: " + str(requiredOrder.type));
 
 func _process(delta):
 	orderTimerRoutine(delta);
@@ -66,17 +67,25 @@ func _on_area_2d_body_exited(body):
 func _on_player_interaction_triggered(player: Player):
 	if(canOrderBeInteractedWith):
 		print("Player trying to deliver order");
-		print(player.heldProduct);
 		if(isOrderSatisfied(player.heldProduct)):
 			orderCompletedSuccessfully(player);
 		else:
 			print("Order not satisfied")
 		
-func isOrderSatisfied(deliveredProduct):
+func isOrderSatisfied(deliveredProduct : Product):
 	print("Analyzing if product is sufficient");
 	if(deliveredProduct == null):
 		return false;
-	return true;
+	
+	if(deliveredProduct.type == requiredOrder.type):
+		if(deliveredProduct.type == Product.productTypes.coffee):
+			if(deliveredProduct.numberOfSugarAndCreamInCoffee == requiredOrder.numberOfSugarAndCreamInCoffee):
+				return true;
+		elif(deliveredProduct.type == Product.productTypes.espresso):
+			if(deliveredProduct.espressoHasSteamedMilk == requiredOrder.espressoHasSteamedMilk):
+				return true;
+				
+	return false;
 	
 func orderCompletedSuccessfully(player : Player):
 	print("Order satisfied");

@@ -28,7 +28,30 @@ func _process(delta):
 	if(dashTimer > DASH_COOLDOWN && !isDashAvailable):
 		isDashAvailable = true;
 
+func canAcceptProduct(product : Product):
+	if(heldProduct == null):
+		if(product.type == Product.productTypes.coffee || product.type == Product.productTypes.espresso):
+			return true;
+	elif(heldProduct.type == Product.productTypes.coffee):
+		if(product.type == Product.productTypes.sugarAndCream):
+			return true;
+	elif(heldProduct.type == Product.productTypes.espresso):
+		if(product.type == Product.productTypes.steamedMilk):
+			return true;
+			
+	print("Player could not accept product");		
+	return false;
+
 func giveProduct(product : Product):
-	#TODO: lots of logic
-	heldProduct = product;
-	pass
+	#TODO; should probably have different classes that are extensions of products?
+	if(heldProduct == null):
+		heldProduct = product;
+		print("Player was given product to hold");
+	elif(heldProduct.type == Product.productTypes.coffee):
+		if(product.type == Product.productTypes.sugarAndCream):
+			heldProduct.numberOfSugarAndCreamInCoffee += 1;
+			print("Coffee was combined with sugar and cream");
+	elif(heldProduct.type == Product.productTypes.espresso):
+		if(product.type == Product.productTypes.steamedMilk):
+			heldProduct.espressoHasSteamedMilk = true;
+			print("Espresso was combined with steamed milk");
