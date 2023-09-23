@@ -22,9 +22,10 @@ func _on_place_order(customer : Customer):
 	var order = orderScene.instantiate();
 	add_child(order);
 	activeOrders.push_back(order);
-	order.requiredOrder = Product.new();
-	order.requiredOrder.type = validProductBases.pick_random();
-	defineOrderRequirements(order.requiredOrder);
+	var requiredOrder = Product.new();
+	requiredOrder.type = validProductBases.pick_random();
+	requiredOrder = defineOrderRequirements(requiredOrder);
+	order.setRequiredOrder(requiredOrder);
 	print(order.requiredOrder.type);
 	print(order.requiredOrder.numberOfSugarAndCreamInCoffee);
 	print(order.requiredOrder.espressoHasSteamedMilk);
@@ -54,3 +55,4 @@ func defineOrderRequirements(product : Product):
 		var actual = steamedMilkOptions.pick_random();
 		if(actual == 1):
 			product.espressoHasSteamedMilk = true;
+	return product;

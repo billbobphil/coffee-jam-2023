@@ -2,6 +2,12 @@ extends Node2D
 
 class_name Order
 
+var coffeeZeroSprite = preload("res://art/coffee-zero-32x32.png");
+var coffeeOneSprite = preload("res://art/coffee-one-32x32.png");
+var coffeeTwoSprite = preload("res://art/coffee-two-32x32.png");
+var latteSprite = preload("res://art/latte-32x32.png");
+var espressoSprite = preload("res://art/espresso-black-32x32.png");
+
 @export var orderTimeMax : float = 20;
 var orderTimer : float = 0;
 var isOrderTimerStarted : bool = false;
@@ -35,7 +41,22 @@ func startOrderTimer():
 func _process(delta):
 	orderTimerRoutine(delta);
 	floatRoutine(delta);
-	pass
+	
+func setRequiredOrder(product : Product):
+	requiredOrder = product;
+	if(requiredOrder.type == Product.productTypes.espresso):
+		if(requiredOrder.espressoHasSteamedMilk):
+			get_node("OrderSprite").texture = latteSprite;
+		else:
+			get_node("OrderSprite").texture = espressoSprite;
+	elif(requiredOrder.type == Product.productTypes.coffee):
+		if(requiredOrder.numberOfSugarAndCreamInCoffee == 0):
+			get_node("OrderSprite").texture = coffeeZeroSprite;
+		elif(requiredOrder.numberOfSugarAndCreamInCoffee == 1):
+			get_node("OrderSprite").texture = coffeeOneSprite;
+		elif(requiredOrder.numberOfSugarAndCreamInCoffee == 2):
+			get_node("OrderSprite").texture = coffeeTwoSprite;
+		
 	
 func orderTimerRoutine(delta):
 	if(isOrderTimerStarted && isOrderOnGoing):
