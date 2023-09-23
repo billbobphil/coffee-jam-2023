@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://c6t81pnweu3om"]
+[gd_scene load_steps=5 format=3 uid="uid://c6t81pnweu3om"]
 
 [ext_resource type="Script" path="res://scripts/table.gd" id="1_uj63j"]
 [ext_resource type="Texture2D" uid="uid://w7g3lb6vg81c" path="res://art/table-32x32.png" id="2_gbq3p"]
+[ext_resource type="FontFile" uid="uid://cooklxfw2lwhf" path="res://fonts/PixelOperatorMono.ttf" id="3_bk6os"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0llar"]
 radius = 24.1868
@@ -17,3 +18,13 @@ texture = ExtResource("2_gbq3p")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 shape = SubResource("CircleShape2D_0llar")
+
+[node name="PayoutText" type="Label" parent="."]
+visible = false
+offset_left = -26.0
+offset_top = -47.0
+offset_right = 27.0
+offset_bottom = -28.0
+theme_override_colors/font_color = Color(0.94902, 0.890196, 0.764706, 1)
+theme_override_fonts/font = ExtResource("3_bk6os")
+text = "$10.00"

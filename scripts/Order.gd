@@ -8,12 +8,13 @@ var coffeeTwoSprite = preload("res://art/coffee-two-32x32.png");
 var latteSprite = preload("res://art/latte-32x32.png");
 var espressoSprite = preload("res://art/espresso-black-32x32.png");
 
-@export var orderTimeMax : float = 20;
+@export var orderTimeMax : float = 30;
 var orderTimer : float = 0;
 var isOrderTimerStarted : bool = false;
 @export var yFloatMax : float = 4;
 @export var yFloatMin : float = -4;
 @export var floatIncrement : float = 10;
+@export var basePayoutAmount : int = 10;
 var shouldFloat : bool = false;
 var initialPositionY : float;
 var direction : int = 1;
@@ -25,10 +26,12 @@ var requiredOrder : Product;
 
 signal order_expired;
 signal order_fulfilled;
+signal payout_triggered;
 
 func _ready():
 	var player = get_tree().get_first_node_in_group("Player")
 	player.interaction_triggered.connect(_on_player_interaction_triggered);
+	orderTimer = orderTimeMax;
 	
 func startOrderTimer():
 	print("Order timer started");
@@ -60,8 +63,9 @@ func setRequiredOrder(product : Product):
 	
 func orderTimerRoutine(delta):
 	if(isOrderTimerStarted && isOrderOnGoing):
-		orderTimer += delta;
-		if(orderTimer >= orderTimeMax):
+		orderTimer -= delta;
+		get_node("TimeRemainingBar").value = (orderTimer / orderTimeMax) * 100; 
+		if(orderTimer <= 0):
 			order_expired.emit(self);
 			isOrderOnGoing = false;
 
@@ -111,6 +115,24 @@ func isOrderSatisfied(deliveredProduct : Product):
 func orderCompletedSuccessfully(player : Player):
 	print("Order satisfied");
 	isOrderOnGoing = false;
+	var payoutAmount = determinePayoutAmount();
+	payout_triggered.emit(payoutAmount);
 	player.heldProduct = null;
 	customer.orderCompleted();
+	customer.assignedTable.showPayoutInfo(payoutAmount);
 	self.queue_free();
+
+func determinePayoutAmount():
+	var percentComplete : float = orderTimer / orderTimeMax;
+	var payoutAmount = 0;	
+	if(percentComplete > 0.8):
+		#full amount + 10%
+		payoutAmount = basePayoutAmount + (basePayoutAmount * .1);
+	elif(percentComplete > .5):
+		#percentage of base amount flat
+		payoutAmount = basePayoutAmount * percentComplete;
+	else:
+		#percentage of base amount minus 10% of received amount
+		payoutAmount = (basePayoutAmount * percentComplete);
+		payoutAmount = payoutAmount - (payoutAmount * .1);
+	return snapped(payoutAmount, 0.01);

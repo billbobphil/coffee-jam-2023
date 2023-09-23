@@ -8,10 +8,12 @@ enum cam_positions {
 var currentCamPosition = cam_positions.STOREFRONT;
 var kitchenCamera;
 var storefrontCamera;
+var totalRevenue : float = 0;
 
 func _ready():
 	kitchenCamera = $KitchenCamera;
 	storefrontCamera = $StorefrontCamera;
+	get_node("OrderManager").payout_triggered.connect(_on_payout_triggered);
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -38,3 +40,8 @@ func change_camera(triggerName):
 	elif (triggerName == "storefront" && currentCamPosition != cam_positions.STOREFRONT):
 		storefrontCamera.make_current();
 		currentCamPosition = cam_positions.STOREFRONT;
+		
+func _on_payout_triggered(amount : float):
+	print("Payout triggered");
+	totalRevenue += amount;
+	get_node("CanvasLayer/RevenueText").text = "$" + str(totalRevenue);
