@@ -10,8 +10,14 @@ radius = 16.0312
 position = Vector2(16, 16)
 script = ExtResource("1_fwv3v")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="PlayerSprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_g1qbd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_4qhye")
+
+[node name="ProductSprite" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, 5)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("2_g1qbd")

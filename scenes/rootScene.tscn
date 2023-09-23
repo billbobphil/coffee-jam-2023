@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://7je3nu0pdsus"]
+[gd_scene load_steps=12 format=3 uid="uid://7je3nu0pdsus"]
 
 [ext_resource type="Script" path="res://scripts/gameManager.gd" id="1_84sy3"]
 [ext_resource type="PackedScene" uid="uid://bhasvup0wqgs5" path="res://scenes/player.tscn" id="1_fb7x5"]
@@ -10,12 +10,18 @@
 [ext_resource type="Script" path="res://scripts/CustomerManager.gd" id="7_buhyn"]
 [ext_resource type="Script" path="res://scripts/OrderManager.gd" id="8_gsm2p"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_do34n"]
+bg_color = Color(0.470588, 0.27451, 0.172549, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p1i2h"]
+bg_color = Color(0.670588, 0.423529, 0.27451, 1)
+
 [node name="Demo" type="Node2D"]
 script = ExtResource("1_84sy3")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="HUD" type="CanvasLayer" parent="."]
 
-[node name="RevenueLabel" type="Label" parent="CanvasLayer"]
+[node name="RevenueLabel" type="Label" parent="HUD"]
 offset_left = 254.0
 offset_top = 342.0
 offset_right = 318.0
@@ -24,7 +30,7 @@ theme_override_colors/font_color = Color(0.298039, 0.172549, 0.129412, 1)
 theme_override_fonts/font = ExtResource("2_5e2c6")
 text = "Revenue:"
 
-[node name="RevenueText" type="Label" parent="CanvasLayer"]
+[node name="RevenueText" type="Label" parent="HUD"]
 offset_left = 318.0
 offset_top = 342.0
 offset_right = 366.0
@@ -32,6 +38,35 @@ offset_bottom = 365.0
 theme_override_colors/font_color = Color(0.819608, 0.619608, 0.47451, 1)
 theme_override_fonts/font = ExtResource("2_5e2c6")
 text = "$0.00"
+
+[node name="TimeRemainingBar" type="ProgressBar" parent="HUD"]
+offset_left = 237.0
+offset_top = 2.0
+offset_right = 412.0
+offset_bottom = 29.0
+theme_override_styles/background = SubResource("StyleBoxFlat_do34n")
+theme_override_styles/fill = SubResource("StyleBoxFlat_p1i2h")
+value = 100.0
+show_percentage = false
+
+[node name="OpenLabel" type="Label" parent="HUD/TimeRemainingBar"]
+layout_mode = 0
+offset_left = 136.0
+offset_top = 5.0
+offset_right = 176.0
+offset_bottom = 28.0
+theme_override_colors/font_color = Color(0.94902, 0.890196, 0.764706, 1)
+theme_override_fonts/font = ExtResource("2_5e2c6")
+text = "OPEN"
+
+[node name="ClosedLabel" type="Label" parent="HUD/TimeRemainingBar"]
+offset_left = 4.0
+offset_top = 5.0
+offset_right = 52.0
+offset_bottom = 28.0
+theme_override_colors/font_color = Color(0.94902, 0.890196, 0.764706, 1)
+theme_override_fonts/font = ExtResource("2_5e2c6")
+text = "CLOSED"
 
 [node name="Player" parent="." instance=ExtResource("1_fb7x5")]
 position = Vector2(303, 402)
@@ -96,7 +131,7 @@ stationName = "Milk Steamer"
 productType = 3
 
 [node name="EspressoStation" parent="Stations" instance=ExtResource("6_j5wo5")]
-position = Vector2(572.598, 108.832)
+position = Vector2(563.461, 131.239)
 scale = Vector2(1.01524, 1.60047)
 stationName = "Espresso"
 productType = 0

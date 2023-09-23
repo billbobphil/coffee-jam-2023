@@ -117,7 +117,7 @@ func orderCompletedSuccessfully(player : Player):
 	isOrderOnGoing = false;
 	var payoutAmount = determinePayoutAmount();
 	payout_triggered.emit(payoutAmount);
-	player.heldProduct = null;
+	player.takeProduct();
 	customer.orderCompleted();
 	customer.assignedTable.showPayoutInfo(payoutAmount);
 	self.queue_free();

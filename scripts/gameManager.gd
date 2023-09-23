@@ -9,14 +9,28 @@ var currentCamPosition = cam_positions.STOREFRONT;
 var kitchenCamera;
 var storefrontCamera;
 var totalRevenue : float = 0;
+@export var dayLength: float = 300;
+var dayTimer = 0;
+var timeRemainingBar;
+var isShopOpen : bool = true;
 
 func _ready():
 	kitchenCamera = $KitchenCamera;
 	storefrontCamera = $StorefrontCamera;
+	timeRemainingBar = get_node("HUD/TimeRemainingBar");
+	dayTimer = dayLength;
 	get_node("OrderManager").payout_triggered.connect(_on_payout_triggered);
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if(dayTimer > 0 && isShopOpen):
+		dayTimer -= delta;
+		timeRemainingBar.value = (dayTimer / dayLength) * 100;
+	elif(dayTimer <= 0 && isShopOpen):
+		#TODO: neeed to trigger end of day stuff
+		print("Day ended");
+		isShopOpen = false;
+	
 	if(Input.is_action_just_pressed("change_camera")):
 		change_camera("button");
 		
@@ -44,4 +58,4 @@ func change_camera(triggerName):
 func _on_payout_triggered(amount : float):
 	print("Payout triggered");
 	totalRevenue += amount;
-	get_node("CanvasLayer/RevenueText").text = "$" + str(totalRevenue);
+	get_node("HUD/RevenueText").text = "$" + str(totalRevenue);

@@ -10,6 +10,12 @@ var isDashAvailable = true;
 var dashTimer = 0;
 var heldProduct : Product;
 
+var espressoSprite = preload("res://art/espresso-black-32x32.png");
+var coffeeSpriteZero = preload("res://art/coffee-zero-32x32.png");
+var coffeeSpriteOne = preload("res://art/coffee-one-32x32.png");
+var coffeeSpriteTwo = preload("res://art/coffee-two-32x32.png");
+var latteSprite = preload("res://art/latte-32x32.png");
+
 func _physics_process(delta):
 	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	var moveSpeed = SPEED;
@@ -43,7 +49,6 @@ func canAcceptProduct(product : Product):
 	return false;
 
 func giveProduct(product : Product):
-	#TODO; should probably have different classes that are extensions of products?
 	if(heldProduct == null):
 		heldProduct = product;
 		print("Player was given product to hold");
@@ -55,3 +60,28 @@ func giveProduct(product : Product):
 		if(product.type == Product.productTypes.steamedMilk):
 			heldProduct.espressoHasSteamedMilk = true;
 			print("Espresso was combined with steamed milk");
+	setProductSprite();
+			
+func takeProduct():
+	heldProduct = null;
+	setProductSprite();
+			
+func setProductSprite():
+	if(heldProduct == null):
+		$ProductSprite.visible = false;
+		return;
+	elif(heldProduct.type == Product.productTypes.espresso):
+		if(heldProduct.espressoHasSteamedMilk):
+			$ProductSprite.texture = latteSprite;
+		else:
+			$ProductSprite.texture = espressoSprite;
+	elif(heldProduct.type == Product.productTypes.coffee):
+		if(heldProduct.numberOfSugarAndCreamInCoffee == 0):
+			$ProductSprite.texture = coffeeSpriteZero;
+		elif(heldProduct.numberOfSugarAndCreamInCoffee == 1):
+			$ProductSprite.texture = coffeeSpriteOne;
+		elif(heldProduct.numberOfSugarAndCreamInCoffee == 2):
+			$ProductSprite.texture = coffeeSpriteTwo;
+		pass;
+
+	$ProductSprite.visible = true;
