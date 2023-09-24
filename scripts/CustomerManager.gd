@@ -32,8 +32,10 @@ func spawn_customer():
 		return;
 	
 	var customer : Customer = customerScene.instantiate();
+	var type = Customer.Types.values().pick_random();
 	var spawnPoint = get_node("SpawnPoint");
 	add_child(customer);
+	customer.assignType(type);
 	customer.position.x = spawnPoint.position.x;
 	customer.position.y = spawnPoint.position.y;
 	customer.spawnPosition = spawnPoint.position;
