@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://7je3nu0pdsus"]
+[gd_scene load_steps=14 format=3 uid="uid://7je3nu0pdsus"]
 
 [ext_resource type="Script" path="res://scripts/gameManager.gd" id="1_84sy3"]
 [ext_resource type="PackedScene" uid="uid://bhasvup0wqgs5" path="res://scenes/player.tscn" id="1_fb7x5"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://mkw6mia3fmqe" path="res://scenes/station.tscn" id="6_j5wo5"]
 [ext_resource type="Script" path="res://scripts/CustomerManager.gd" id="7_buhyn"]
 [ext_resource type="Script" path="res://scripts/OrderManager.gd" id="8_gsm2p"]
+[ext_resource type="Texture2D" uid="uid://caaemqq2ww1yi" path="res://art/32x32-cube.png" id="11_hfdru"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_do34n"]
 bg_color = Color(0.470588, 0.27451, 0.172549, 1)
@@ -30,18 +31,18 @@ layer_0/tile_data = PackedInt32Array(1441792, 65538, 1, 1441793, 65538, 1, 14417
 
 [node name="RevenueLabel" type="Label" parent="HUD"]
 offset_left = 254.0
-offset_top = 342.0
+offset_top = 340.0
 offset_right = 318.0
-offset_bottom = 365.0
+offset_bottom = 363.0
 theme_override_colors/font_color = Color(0.298039, 0.172549, 0.129412, 1)
 theme_override_fonts/font = ExtResource("2_5e2c6")
 text = "Revenue:"
 
 [node name="RevenueText" type="Label" parent="HUD"]
 offset_left = 318.0
-offset_top = 342.0
+offset_top = 340.0
 offset_right = 366.0
-offset_bottom = 365.0
+offset_bottom = 363.0
 theme_override_colors/font_color = Color(0.819608, 0.619608, 0.47451, 1)
 theme_override_fonts/font = ExtResource("2_5e2c6")
 text = "$0.00"
@@ -128,7 +129,7 @@ stationName = "Milk and Sugar"
 productType = 2
 
 [node name="CoffeeStation" parent="Stations" instance=ExtResource("6_j5wo5")]
-position = Vector2(76.1434, 152.045)
+position = Vector2(97.4635, 152.045)
 scale = Vector2(1.01524, 1.60047)
 stationName = "Drip Coffee"
 
@@ -153,6 +154,13 @@ position = Vector2(304, 789)
 
 [node name="OrderManager" type="Node2D" parent="."]
 script = ExtResource("8_gsm2p")
+
+[node name="NonsenseFill" type="Sprite2D" parent="."]
+modulate = Color(0.192157, 0.129412, 0.215686, 1)
+y_sort_enabled = true
+position = Vector2(654, 218)
+scale = Vector2(1, 32)
+texture = ExtResource("11_hfdru")
 
 [connection signal="body_entered" from="CameraTriggers/KitchenCameraTriggerLeft" to="." method="_on_change_camera" binds= ["kitchen"]]
 [connection signal="body_entered" from="CameraTriggers/KitchenCameraTriggerRight" to="." method="_on_change_camera" binds= ["kitchen"]]
