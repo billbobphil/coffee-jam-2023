@@ -9,14 +9,16 @@ var currentCamPosition = cam_positions.STOREFRONT;
 var kitchenCamera;
 var storefrontCamera;
 var totalRevenue : float = 0;
-@export var dayLength: float = 300;
+@export var dayLength: float = 10;
 var dayTimer = 0;
 var timeRemainingBar;
 var isShopOpen : bool = true;
+var levelEndScreen;
 
 func _ready():
 	kitchenCamera = $KitchenCamera;
 	storefrontCamera = $StorefrontCamera;
+	levelEndScreen = $LevelEndScreen;
 	timeRemainingBar = get_node("HUD/TimeRemainingBar");
 	dayTimer = dayLength;
 	get_node("OrderManager").payout_triggered.connect(_on_payout_triggered);
@@ -27,9 +29,11 @@ func _process(delta):
 		dayTimer -= delta;
 		timeRemainingBar.value = (dayTimer / dayLength) * 100;
 	elif(dayTimer <= 0 && isShopOpen):
-		#TODO: neeed to trigger end of day stuff
 		print("Day ended");
 		isShopOpen = false;
+		levelEndScreen.showDialog(11, totalRevenue);
+		get_tree().paused = true;
+		
 	
 	if(Input.is_action_just_pressed("change_camera")):
 		change_camera("button");

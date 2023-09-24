@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://7je3nu0pdsus"]
+[gd_scene load_steps=15 format=3 uid="uid://7je3nu0pdsus"]
 
 [ext_resource type="Script" path="res://scripts/gameManager.gd" id="1_84sy3"]
 [ext_resource type="PackedScene" uid="uid://bhasvup0wqgs5" path="res://scenes/player.tscn" id="1_fb7x5"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://scripts/CustomerManager.gd" id="7_buhyn"]
 [ext_resource type="Script" path="res://scripts/OrderManager.gd" id="8_gsm2p"]
 [ext_resource type="Texture2D" uid="uid://caaemqq2ww1yi" path="res://art/32x32-cube.png" id="11_hfdru"]
+[ext_resource type="PackedScene" uid="uid://b2sjwuo7bihry" path="res://scenes/level_end.tscn" id="12_lmxvb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_do34n"]
 bg_color = Color(0.470588, 0.27451, 0.172549, 1)
@@ -19,6 +20,7 @@ bg_color = Color(0.470588, 0.27451, 0.172549, 1)
 bg_color = Color(0.670588, 0.423529, 0.27451, 1)
 
 [node name="Demo" type="Node2D"]
+process_mode = 3
 script = ExtResource("1_84sy3")
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -87,9 +89,11 @@ position = Vector2(319, 542)
 position = Vector2(319, 181)
 
 [node name="WallGenerator" type="Node2D" parent="."]
+process_mode = 1
 script = ExtResource("4_nmx7f")
 
 [node name="CameraTriggers" type="Node2D" parent="."]
+process_mode = 1
 
 [node name="KitchenCameraTriggerLeft" parent="CameraTriggers" instance=ExtResource("5_yqnp0")]
 
@@ -103,6 +107,7 @@ position = Vector2(10, 390)
 position = Vector2(532, 390)
 
 [node name="Tables" type="Node2D" parent="."]
+process_mode = 1
 
 [node name="Table" parent="Tables" instance=ExtResource("2_4o8w4")]
 position = Vector2(176, 477)
@@ -120,6 +125,7 @@ position = Vector2(48, 657)
 position = Vector2(475, 477)
 
 [node name="Stations" type="Node2D" parent="."]
+process_mode = 1
 scale = Vector2(0.984984, 0.624815)
 
 [node name="SugarAndCreamStation" parent="Stations" instance=ExtResource("6_j5wo5")]
@@ -146,6 +152,7 @@ stationName = "Espresso"
 productType = 0
 
 [node name="CustomerManager" type="Node2D" parent="." node_paths=PackedStringArray("tables")]
+process_mode = 1
 script = ExtResource("7_buhyn")
 tables = [NodePath("../Tables/Table"), NodePath("../Tables/Table2"), NodePath("../Tables/Table3"), NodePath("../Tables/Table4"), NodePath("../Tables/Table5")]
 
@@ -153,6 +160,7 @@ tables = [NodePath("../Tables/Table"), NodePath("../Tables/Table2"), NodePath(".
 position = Vector2(304, 789)
 
 [node name="OrderManager" type="Node2D" parent="."]
+process_mode = 1
 script = ExtResource("8_gsm2p")
 
 [node name="NonsenseFill" type="Sprite2D" parent="."]
@@ -161,6 +169,10 @@ y_sort_enabled = true
 position = Vector2(654, 218)
 scale = Vector2(1, 32)
 texture = ExtResource("11_hfdru")
+
+[node name="LevelEndScreen" parent="." instance=ExtResource("12_lmxvb")]
+process_mode = 3
+visible = false
 
 [connection signal="body_entered" from="CameraTriggers/KitchenCameraTriggerLeft" to="." method="_on_change_camera" binds= ["kitchen"]]
 [connection signal="body_entered" from="CameraTriggers/KitchenCameraTriggerRight" to="." method="_on_change_camera" binds= ["kitchen"]]

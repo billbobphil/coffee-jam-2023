@@ -1,0 +1,118 @@
+[gd_scene load_steps=10 format=3 uid="uid://b2sjwuo7bihry"]
+
+[ext_resource type="Texture2D" uid="uid://caaemqq2ww1yi" path="res://art/32x32-cube.png" id="1_0hnia"]
+[ext_resource type="Script" path="res://scripts/level_end.gd" id="1_g1t7a"]
+[ext_resource type="FontFile" uid="uid://cooklxfw2lwhf" path="res://fonts/PixelOperatorMono.ttf" id="2_kc3iu"]
+[ext_resource type="Texture2D" uid="uid://df3uxqwbc6ncl" path="res://art/32x32-circle.png" id="2_o861r"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oanhe"]
+bg_color = Color(0.670588, 0.423529, 0.27451, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h2yb3"]
+bg_color = Color(0.470588, 0.27451, 0.172549, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ih66k"]
+bg_color = Color(0.298039, 0.172549, 0.129412, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4b6b1"]
+bg_color = Color(0.470588, 0.27451, 0.172549, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_govgr"]
+bg_color = Color(0.298039, 0.172549, 0.129412, 1)
+
+[node name="Canvas" type="CanvasLayer"]
+script = ExtResource("1_g1t7a")
+
+[node name="Backdrop" type="Sprite2D" parent="."]
+modulate = Color(0.12549, 0.0745098, 0.054902, 1)
+position = Vector2(318.5, 179)
+scale = Vector2(16.7812, 9.3125)
+texture = ExtResource("1_0hnia")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.298039, 0.172549, 0.129412, 1)
+position = Vector2(133, 95)
+scale = Vector2(3.95312, 3.72656)
+texture = ExtResource("2_o861r")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+modulate = Color(0.470588, 0.27451, 0.172549, 1)
+position = Vector2(179, 81)
+scale = Vector2(2.54742, 2.40932)
+texture = ExtResource("2_o861r")
+
+[node name="Title" type="Label" parent="."]
+offset_left = 162.0
+offset_top = 43.0
+offset_right = 493.0
+offset_bottom = 107.0
+theme_override_colors/font_color = Color(0.819608, 0.619608, 0.47451, 1)
+theme_override_fonts/font = ExtResource("2_kc3iu")
+theme_override_font_sizes/font_size = 60
+text = "Shop Closed"
+
+[node name="ServedLabel" type="Label" parent="."]
+offset_left = 156.0
+offset_top = 184.0
+offset_right = 285.0
+offset_bottom = 207.0
+theme_override_colors/font_color = Color(0.819608, 0.619608, 0.47451, 1)
+theme_override_fonts/font = ExtResource("2_kc3iu")
+theme_override_font_sizes/font_size = 16
+text = "Customers Served"
+
+[node name="TotalRevenueLabel" type="Label" parent="."]
+offset_left = 368.0
+offset_top = 184.0
+offset_right = 472.0
+offset_bottom = 207.0
+theme_override_colors/font_color = Color(0.819608, 0.619608, 0.47451, 1)
+theme_override_fonts/font = ExtResource("2_kc3iu")
+theme_override_font_sizes/font_size = 16
+text = "Total Revenue"
+
+[node name="TotalRevenueText" type="Label" parent="."]
+offset_left = 363.0
+offset_top = 146.0
+offset_right = 476.0
+offset_bottom = 184.0
+theme_override_colors/font_color = Color(0.94902, 0.890196, 0.764706, 1)
+theme_override_fonts/font = ExtResource("2_kc3iu")
+theme_override_font_sizes/font_size = 32
+text = "$100.00"
+horizontal_alignment = 1
+
+[node name="CustomersServedText" type="Label" parent="."]
+offset_left = 164.0
+offset_top = 146.0
+offset_right = 277.0
+offset_bottom = 184.0
+theme_override_colors/font_color = Color(0.94902, 0.890196, 0.764706, 1)
+theme_override_fonts/font = ExtResource("2_kc3iu")
+theme_override_font_sizes/font_size = 32
+text = "00"
+horizontal_alignment = 1
+
+[node name="PlayAgainButton" type="Button" parent="."]
+offset_left = 149.0
+offset_top = 237.0
+offset_right = 291.0
+offset_bottom = 285.0
+theme_override_fonts/font = ExtResource("2_kc3iu")
+theme_override_styles/normal = SubResource("StyleBoxFlat_oanhe")
+theme_override_styles/hover = SubResource("StyleBoxFlat_h2yb3")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ih66k")
+text = "PLAY AGAIN"
+
+[node name="MenuButton" type="Button" parent="."]
+offset_left = 352.0
+offset_top = 237.0
+offset_right = 494.0
+offset_bottom = 285.0
+theme_override_fonts/font = ExtResource("2_kc3iu")
+theme_override_styles/normal = SubResource("StyleBoxFlat_oanhe")
+theme_override_styles/hover = SubResource("StyleBoxFlat_4b6b1")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_govgr")
+text = "MENU"
+
+[node name="LevelEndScreen" type="Node2D" parent="."]

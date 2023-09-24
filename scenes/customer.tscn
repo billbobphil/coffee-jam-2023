@@ -85,6 +85,7 @@ animations = [{
 radius = 16.1245
 
 [node name="Customer" type="CharacterBody2D"]
+process_mode = 1
 script = ExtResource("1_mei5i")
 speed = 80.0
 
