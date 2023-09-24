@@ -60,6 +60,7 @@ theme_override_fonts/font = ExtResource("2_5e2c6")
 text = "OPEN"
 
 [node name="ClosedLabel" type="Label" parent="HUD/TimeRemainingBar"]
+layout_mode = 0
 offset_left = 4.0
 offset_top = 5.0
 offset_right = 52.0

@@ -15,6 +15,11 @@ var coffeeSpriteZero = preload("res://art/coffee-zero-32x32.png");
 var coffeeSpriteOne = preload("res://art/coffee-one-32x32.png");
 var coffeeSpriteTwo = preload("res://art/coffee-two-32x32.png");
 var latteSprite = preload("res://art/latte-32x32.png");
+@onready var animatedSprite = $AnimatedSprite2D;
+
+func _ready():
+	#TODO: add logic to _process to understand which sprite to use
+	animatedSprite.play("walk_down");
 
 func _physics_process(delta):
 	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
@@ -33,6 +38,19 @@ func _process(delta):
 		interaction_triggered.emit(self)
 	if(dashTimer > DASH_COOLDOWN && !isDashAvailable):
 		isDashAvailable = true;
+	
+	if(Input.is_action_pressed("move_down")):
+		animatedSprite.play("walk_down");
+	elif(Input.is_action_pressed("move_up")):
+		animatedSprite.play("walk_up");
+	elif(Input.is_action_pressed("move_left")):
+		animatedSprite.play("walk_left")
+	elif(Input.is_action_pressed("move_right")):
+		animatedSprite.play("walk_right");
+	else:
+		if(animatedSprite.animation != "walk_down"):
+			animatedSprite.play("walk_down");
+		
 
 func canAcceptProduct(product : Product):
 	if(heldProduct == null):

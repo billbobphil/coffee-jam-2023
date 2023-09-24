@@ -1,7 +1,59 @@
-[gd_scene load_steps=4 format=3 uid="uid://bhasvup0wqgs5"]
+[gd_scene load_steps=10 format=3 uid="uid://bhasvup0wqgs5"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_fwv3v"]
+[ext_resource type="Texture2D" uid="uid://d2kvjsrxxe3pw" path="res://art/player-32x32.png" id="2_6mroy"]
 [ext_resource type="Texture2D" uid="uid://caaemqq2ww1yi" path="res://art/32x32-cube.png" id="2_g1qbd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5dco3"]
+atlas = ExtResource("2_6mroy")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_63o4f"]
+atlas = ExtResource("2_6mroy")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ucnvt"]
+atlas = ExtResource("2_6mroy")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m8tah"]
+atlas = ExtResource("2_6mroy")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_swfsu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5dco3")
+}],
+"loop": true,
+"name": &"walk_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_63o4f")
+}],
+"loop": true,
+"name": &"walk_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ucnvt")
+}],
+"loop": true,
+"name": &"walk_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m8tah")
+}],
+"loop": true,
+"name": &"walk_up",
+"speed": 5.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4qhye"]
 radius = 16.0312
@@ -10,14 +62,20 @@ radius = 16.0312
 position = Vector2(16, 16)
 script = ExtResource("1_fwv3v")
 
-[node name="PlayerSprite" type="Sprite2D" parent="."]
-texture = ExtResource("2_g1qbd")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_4qhye")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_swfsu")
+animation = &"walk_down"
 
 [node name="ProductSprite" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(0, 5)
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("2_g1qbd")
+
+[node name="PlayerSprite" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("2_g1qbd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CircleShape2D_4qhye")
