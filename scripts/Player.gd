@@ -16,6 +16,11 @@ var coffeeSpriteOne = preload("res://art/coffee-one-32x32.png");
 var coffeeSpriteTwo = preload("res://art/coffee-two-32x32.png");
 var latteSprite = preload("res://art/latte-32x32.png");
 @onready var animatedSprite = $AnimatedSprite2D;
+@onready var leftProductPosition = get_node("ProductPositions/Left");
+@onready var rightProductPosition = get_node("ProductPositions/Right");
+@onready var topProductPosition = get_node("ProductPositions/Top");
+@onready var bottomProductPosition = get_node("ProductPositions/Bottom");
+@onready var productSprite : Sprite2D = $ProductSprite;
 
 func _ready():
 	#TODO: add logic to _process to understand which sprite to use
@@ -41,15 +46,20 @@ func _process(delta):
 	
 	if(Input.is_action_pressed("move_down")):
 		animatedSprite.play("walk_down");
+		productSprite.position = bottomProductPosition.position;
 	elif(Input.is_action_pressed("move_up")):
 		animatedSprite.play("walk_up");
+		productSprite.position = topProductPosition.position;
 	elif(Input.is_action_pressed("move_left")):
 		animatedSprite.play("walk_left")
+		productSprite.position = leftProductPosition.position;
 	elif(Input.is_action_pressed("move_right")):
 		animatedSprite.play("walk_right");
-	else:
-		if(animatedSprite.animation != "walk_down"):
-			animatedSprite.play("walk_down");
+		productSprite.position = rightProductPosition.position;
+#	else:
+#		if(animatedSprite.animation != "walk_down"):
+#			animatedSprite.play("walk_down");
+#			productSprite.position = bottomProductPosition.position;
 		
 
 func canAcceptProduct(product : Product):

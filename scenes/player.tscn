@@ -79,3 +79,17 @@ texture = ExtResource("2_g1qbd")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 shape = SubResource("CircleShape2D_4qhye")
+
+[node name="ProductPositions" type="Node2D" parent="."]
+
+[node name="Right" type="Node2D" parent="ProductPositions"]
+position = Vector2(23, 1)
+
+[node name="Left" type="Node2D" parent="ProductPositions"]
+position = Vector2(-24, 1)
+
+[node name="Top" type="Node2D" parent="ProductPositions"]
+position = Vector2(0, -21)
+
+[node name="Bottom" type="Node2D" parent="ProductPositions"]
+position = Vector2(0, 8)
