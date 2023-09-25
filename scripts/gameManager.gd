@@ -35,7 +35,6 @@ func _process(delta):
 		levelEndScreen.showDialog(totalCustomersServed, totalRevenue);
 		get_tree().paused = true;
 		
-	
 	if(Input.is_action_just_pressed("change_camera")):
 		change_camera("button");
 		

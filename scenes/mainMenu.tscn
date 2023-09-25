@@ -1,0 +1,102 @@
+[gd_scene load_steps=9 format=3 uid="uid://dddumebb8uqad"]
+
+[ext_resource type="Texture2D" uid="uid://caaemqq2ww1yi" path="res://art/32x32-cube.png" id="1_stj5y"]
+[ext_resource type="FontFile" uid="uid://cooklxfw2lwhf" path="res://fonts/PixelOperatorMono.ttf" id="2_544sn"]
+[ext_resource type="Texture2D" uid="uid://df3uxqwbc6ncl" path="res://art/32x32-circle.png" id="3_1xsvt"]
+[ext_resource type="AudioStream" uid="uid://qsbrpc8oo4hq" path="res://sounds/a_welcome_hauntingWAV.wav" id="4_3keb5"]
+[ext_resource type="Texture2D" uid="uid://wokusc17t2uk" path="res://art/espresso-black-32x32.png" id="5_25olw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pik7t"]
+bg_color = Color(0.667969, 0.421875, 0.273438, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xaehr"]
+bg_color = Color(0.46875, 0.273438, 0.171875, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5rsgm"]
+bg_color = Color(0.296875, 0.171875, 0.128906, 1)
+
+[node name="MainMenu" type="CanvasLayer"]
+
+[node name="Backdrop" type="Sprite2D" parent="."]
+modulate = Color(0.160784, 0.105882, 0.180392, 1)
+position = Vector2(320, 180)
+scale = Vector2(20, 11.25)
+texture = ExtResource("1_stj5y")
+
+[node name="Title2" type="Label" parent="."]
+offset_left = 21.0
+offset_top = 18.0
+offset_right = 525.0
+offset_bottom = 246.0
+theme_override_colors/font_color = Color(0.298039, 0.172549, 0.129412, 1)
+theme_override_fonts/font = ExtResource("2_544sn")
+theme_override_font_sizes/font_size = 72
+text = "Jeepers 
+Creepers
+Java"
+
+[node name="Title" type="Label" parent="."]
+offset_left = 18.0
+offset_top = 16.0
+offset_right = 522.0
+offset_bottom = 244.0
+theme_override_colors/font_color = Color(0.670588, 0.423529, 0.27451, 1)
+theme_override_fonts/font = ExtResource("2_544sn")
+theme_override_font_sizes/font_size = 72
+text = "Jeepers 
+Creepers
+Java"
+
+[node name="DecorationFolder" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="DecorationFolder"]
+modulate = Color(0.298039, 0.172549, 0.129412, 1)
+position = Vector2(640, 360)
+scale = Vector2(13.3906, 12.7813)
+texture = ExtResource("3_1xsvt")
+
+[node name="Sprite2D2" type="Sprite2D" parent="DecorationFolder"]
+modulate = Color(0.470588, 0.27451, 0.172549, 1)
+position = Vector2(640, 360)
+scale = Vector2(9.47266, 9.75781)
+texture = ExtResource("3_1xsvt")
+
+[node name="Sprite2D3" type="Sprite2D" parent="DecorationFolder"]
+modulate = Color(0.670588, 0.423529, 0.27451, 1)
+position = Vector2(640, 360)
+scale = Vector2(6.44141, 6.41406)
+texture = ExtResource("3_1xsvt")
+
+[node name="Sprite2D4" type="Sprite2D" parent="DecorationFolder"]
+modulate = Color(0.670588, 0.423529, 0.27451, 1)
+position = Vector2(464, 18)
+scale = Vector2(9.78223, 0.0595697)
+texture = ExtResource("1_stj5y")
+
+[node name="Sprite2D5" type="Sprite2D" parent="DecorationFolder"]
+modulate = Color(0.670588, 0.423529, 0.27451, 1)
+position = Vector2(518, 25)
+scale = Vector2(7.04736, 0.0595697)
+texture = ExtResource("1_stj5y")
+
+[node name="Button" type="Button" parent="."]
+offset_left = 455.0
+offset_top = 45.0
+offset_right = 602.0
+offset_bottom = 94.0
+theme_override_fonts/font = ExtResource("2_544sn")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_pik7t")
+theme_override_styles/hover = SubResource("StyleBoxFlat_xaehr")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_5rsgm")
+text = "PLAY"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_3keb5")
+volume_db = -7.5
+autoplay = true
+
+[node name="Espresso-black-32x32" type="Sprite2D" parent="."]
+position = Vector2(242, 234)
+scale = Vector2(4, 4)
+texture = ExtResource("5_25olw")

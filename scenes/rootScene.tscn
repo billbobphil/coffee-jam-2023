@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://7je3nu0pdsus"]
+[gd_scene load_steps=16 format=3 uid="uid://7je3nu0pdsus"]
 
 [ext_resource type="Script" path="res://scripts/gameManager.gd" id="1_84sy3"]
 [ext_resource type="PackedScene" uid="uid://bhasvup0wqgs5" path="res://scenes/player.tscn" id="1_fb7x5"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" path="res://scripts/OrderManager.gd" id="8_gsm2p"]
 [ext_resource type="Texture2D" uid="uid://caaemqq2ww1yi" path="res://art/32x32-cube.png" id="11_hfdru"]
 [ext_resource type="PackedScene" uid="uid://b2sjwuo7bihry" path="res://scenes/level_end.tscn" id="12_lmxvb"]
+[ext_resource type="AudioStream" uid="uid://qsbrpc8oo4hq" path="res://sounds/a_welcome_hauntingWAV.wav" id="13_au8kd"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_do34n"]
 bg_color = Color(0.470588, 0.27451, 0.172549, 1)
@@ -173,6 +174,11 @@ texture = ExtResource("11_hfdru")
 [node name="LevelEndScreen" parent="." instance=ExtResource("12_lmxvb")]
 process_mode = 3
 visible = false
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_au8kd")
+volume_db = -7.5
+autoplay = true
 
 [connection signal="body_entered" from="CameraTriggers/KitchenCameraTriggerLeft" to="." method="_on_change_camera" binds= ["kitchen"]]
 [connection signal="body_entered" from="CameraTriggers/KitchenCameraTriggerRight" to="." method="_on_change_camera" binds= ["kitchen"]]
