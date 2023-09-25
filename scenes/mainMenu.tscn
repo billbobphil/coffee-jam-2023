@@ -1,5 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://dddumebb8uqad"]
+[gd_scene load_steps=10 format=3 uid="uid://dddumebb8uqad"]
 
+[ext_resource type="Script" path="res://scripts/mainMenu.gd" id="1_jvkjm"]
 [ext_resource type="Texture2D" uid="uid://caaemqq2ww1yi" path="res://art/32x32-cube.png" id="1_stj5y"]
 [ext_resource type="FontFile" uid="uid://cooklxfw2lwhf" path="res://fonts/PixelOperatorMono.ttf" id="2_544sn"]
 [ext_resource type="Texture2D" uid="uid://df3uxqwbc6ncl" path="res://art/32x32-circle.png" id="3_1xsvt"]
@@ -16,6 +17,7 @@ bg_color = Color(0.46875, 0.273438, 0.171875, 1)
 bg_color = Color(0.296875, 0.171875, 0.128906, 1)
 
 [node name="MainMenu" type="CanvasLayer"]
+script = ExtResource("1_jvkjm")
 
 [node name="Backdrop" type="Sprite2D" parent="."]
 modulate = Color(0.160784, 0.105882, 0.180392, 1)
@@ -79,7 +81,7 @@ position = Vector2(518, 25)
 scale = Vector2(7.04736, 0.0595697)
 texture = ExtResource("1_stj5y")
 
-[node name="Button" type="Button" parent="."]
+[node name="PlayButton" type="Button" parent="."]
 offset_left = 455.0
 offset_top = 45.0
 offset_right = 602.0
@@ -100,3 +102,5 @@ autoplay = true
 position = Vector2(242, 234)
 scale = Vector2(4, 4)
 texture = ExtResource("5_25olw")
+
+[connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]

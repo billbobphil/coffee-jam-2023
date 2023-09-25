@@ -13,5 +13,4 @@ func _on_play_again_button_pressed():
 
 
 func _on_menu_button_pressed():
-	#TODO: take player to main menu
-	pass
+	get_tree().change_scene_to_file("res://scenes/mainMenu.tscn");
