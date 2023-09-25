@@ -116,3 +116,6 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_govgr")
 text = "MENU"
 
 [node name="LevelEndScreen" type="Node2D" parent="."]
+
+[connection signal="pressed" from="PlayAgainButton" to="." method="_on_play_again_button_pressed"]
+[connection signal="pressed" from="MenuButton" to="." method="_on_menu_button_pressed"]

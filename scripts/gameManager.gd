@@ -9,13 +9,15 @@ var currentCamPosition = cam_positions.STOREFRONT;
 var kitchenCamera;
 var storefrontCamera;
 var totalRevenue : float = 0;
-@export var dayLength: float = 10;
+@export var dayLength: float = 30;
 var dayTimer = 0;
 var timeRemainingBar;
 var isShopOpen : bool = true;
 var levelEndScreen;
+var totalCustomersServed = 0;
 
 func _ready():
+	get_tree().paused = false;
 	kitchenCamera = $KitchenCamera;
 	storefrontCamera = $StorefrontCamera;
 	levelEndScreen = $LevelEndScreen;
@@ -23,7 +25,6 @@ func _ready():
 	dayTimer = dayLength;
 	get_node("OrderManager").payout_triggered.connect(_on_payout_triggered);
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if(dayTimer > 0 && isShopOpen):
 		dayTimer -= delta;
@@ -31,7 +32,7 @@ func _process(delta):
 	elif(dayTimer <= 0 && isShopOpen):
 		print("Day ended");
 		isShopOpen = false;
-		levelEndScreen.showDialog(11, totalRevenue);
+		levelEndScreen.showDialog(totalCustomersServed, totalRevenue);
 		get_tree().paused = true;
 		
 	
@@ -62,4 +63,5 @@ func change_camera(triggerName):
 func _on_payout_triggered(amount : float):
 	print("Payout triggered");
 	totalRevenue += amount;
+	totalCustomersServed += 1;
 	get_node("HUD/RevenueText").text = "$" + str(totalRevenue);
