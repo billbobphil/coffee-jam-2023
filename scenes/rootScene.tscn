@@ -122,7 +122,7 @@ scale = Vector2(1.75, 1.75)
 texture = ExtResource("4_gnrei")
 
 [node name="Carpet5" type="Sprite2D" parent="Decorations"]
-position = Vector2(91, 642)
+position = Vector2(93, 636)
 texture = ExtResource("4_gnrei")
 
 [node name="Carpet6" type="Sprite2D" parent="Decorations"]
@@ -152,7 +152,7 @@ scale = Vector2(2, 2)
 texture = ExtResource("6_cu1mm")
 
 [node name="Chair-side-16x18" type="Sprite2D" parent="Decorations/Chairs"]
-position = Vector2(70, 625)
+position = Vector2(72, 619)
 scale = Vector2(2, 2)
 texture = ExtResource("6_cu1mm")
 
@@ -187,14 +187,9 @@ scale = Vector2(2, 2)
 texture = ExtResource("7_eh3a0")
 
 [node name="Chair-other-side-16x20" type="Sprite2D" parent="Decorations/Chairs"]
-position = Vector2(104, 629)
+position = Vector2(106, 623)
 scale = Vector2(2, 2)
 texture = ExtResource("7_eh3a0")
-
-[node name="Carpet8" type="Sprite2D" parent="Decorations"]
-position = Vector2(187, 486)
-scale = Vector2(1.5, 1.5)
-texture = ExtResource("4_gnrei")
 
 [node name="Stations" type="Node2D" parent="."]
 process_mode = 1
@@ -330,7 +325,7 @@ position = Vector2(304, 584)
 position = Vector2(581, 560)
 
 [node name="Table4" parent="Tables" instance=ExtResource("2_4o8w4")]
-position = Vector2(87, 637)
+position = Vector2(89, 631)
 
 [node name="Table5" parent="Tables" instance=ExtResource("2_4o8w4")]
 position = Vector2(461, 490)
@@ -369,7 +364,7 @@ autoplay = true
 position = Vector2(470, 254)
 
 [node name="GarbageCan2" parent="GarbageCans" instance=ExtResource("14_w40hf")]
-position = Vector2(54, 525)
+position = Vector2(598, 674)
 
 [node name="GarbageCan3" parent="GarbageCans" instance=ExtResource("14_w40hf")]
 position = Vector2(161, 254)
