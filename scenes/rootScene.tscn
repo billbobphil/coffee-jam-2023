@@ -122,16 +122,16 @@ scale = Vector2(1.75, 1.75)
 texture = ExtResource("4_gnrei")
 
 [node name="Carpet5" type="Sprite2D" parent="Decorations"]
-position = Vector2(52, 662)
+position = Vector2(91, 642)
 texture = ExtResource("4_gnrei")
 
 [node name="Carpet6" type="Sprite2D" parent="Decorations"]
-position = Vector2(185, 309)
+position = Vector2(167, 260)
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("4_gnrei")
 
 [node name="Carpet7" type="Sprite2D" parent="Decorations"]
-position = Vector2(404, 87)
+position = Vector2(466, 262)
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("4_gnrei")
 
@@ -152,7 +152,7 @@ scale = Vector2(2, 2)
 texture = ExtResource("6_cu1mm")
 
 [node name="Chair-side-16x18" type="Sprite2D" parent="Decorations/Chairs"]
-position = Vector2(31, 645)
+position = Vector2(70, 625)
 scale = Vector2(2, 2)
 texture = ExtResource("6_cu1mm")
 
@@ -187,9 +187,41 @@ scale = Vector2(2, 2)
 texture = ExtResource("7_eh3a0")
 
 [node name="Chair-other-side-16x20" type="Sprite2D" parent="Decorations/Chairs"]
-position = Vector2(65, 649)
+position = Vector2(104, 629)
 scale = Vector2(2, 2)
 texture = ExtResource("7_eh3a0")
+
+[node name="Carpet8" type="Sprite2D" parent="Decorations"]
+position = Vector2(187, 486)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("4_gnrei")
+
+[node name="Stations" type="Node2D" parent="."]
+process_mode = 1
+scale = Vector2(0.984984, 0.624815)
+
+[node name="SugarAndCreamStation" parent="Stations" instance=ExtResource("6_j5wo5")]
+position = Vector2(286.299, 406.52)
+scale = Vector2(1.01524, 1.60047)
+stationName = "Milk and Sugar"
+productType = 2
+
+[node name="CoffeeStation" parent="Stations" instance=ExtResource("6_j5wo5")]
+position = Vector2(222.339, 401.719)
+scale = Vector2(1.01524, 1.60047)
+stationName = "Drip Coffee"
+
+[node name="SteamerStation" parent="Stations" instance=ExtResource("6_j5wo5")]
+position = Vector2(350.259, 406.52)
+scale = Vector2(1.01524, 1.60047)
+stationName = "Milk Steamer"
+productType = 3
+
+[node name="EspressoStation" parent="Stations" instance=ExtResource("6_j5wo5")]
+position = Vector2(414.22, 400.118)
+scale = Vector2(1.01524, 1.60047)
+stationName = "Espresso"
+productType = 0
 
 [node name="Player" parent="." instance=ExtResource("1_fb7x5")]
 position = Vector2(331, 484)
@@ -197,15 +229,15 @@ position = Vector2(331, 484)
 [node name="Bookshelves" type="Node2D" parent="."]
 
 [node name="Book-shelf-32x68" type="Sprite2D" parent="Bookshelves"]
-position = Vector2(155, 43)
+position = Vector2(539, 234)
 texture = ExtResource("9_ejrr0")
 
 [node name="Book-shelf-32x69" type="Sprite2D" parent="Bookshelves"]
-position = Vector2(187, 43)
+position = Vector2(571, 234)
 texture = ExtResource("9_ejrr0")
 
 [node name="Book-shelf-32x70" type="Sprite2D" parent="Bookshelves"]
-position = Vector2(218, 43)
+position = Vector2(602, 234)
 texture = ExtResource("9_ejrr0")
 
 [node name="Book-shelf-32x64" type="Sprite2D" parent="Bookshelves"]
@@ -222,6 +254,18 @@ texture = ExtResource("9_ejrr0")
 
 [node name="Book-shelf-32x67" type="Sprite2D" parent="Bookshelves"]
 position = Vector2(32, 471)
+texture = ExtResource("9_ejrr0")
+
+[node name="Book-shelf-32x71" type="Sprite2D" parent="Bookshelves"]
+position = Vector2(34, 234)
+texture = ExtResource("9_ejrr0")
+
+[node name="Book-shelf-32x72" type="Sprite2D" parent="Bookshelves"]
+position = Vector2(66, 234)
+texture = ExtResource("9_ejrr0")
+
+[node name="Book-shelf-32x73" type="Sprite2D" parent="Bookshelves"]
+position = Vector2(97, 234)
 texture = ExtResource("9_ejrr0")
 
 [node name="ShelvesNearDoorBody" type="StaticBody2D" parent="Bookshelves"]
@@ -243,7 +287,14 @@ shape = SubResource("RectangleShape2D_nsiut")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bookshelves/StaticBody2D"]
 visible = false
-position = Vector2(186.5, 42.5)
+position = Vector2(570, 233)
+shape = SubResource("RectangleShape2D_7ivl2")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Bookshelves"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bookshelves/StaticBody2D2"]
+visible = false
+position = Vector2(65, 234)
 shape = SubResource("RectangleShape2D_7ivl2")
 
 [node name="StorefrontCamera" type="Camera2D" parent="."]
@@ -279,37 +330,10 @@ position = Vector2(304, 584)
 position = Vector2(581, 560)
 
 [node name="Table4" parent="Tables" instance=ExtResource("2_4o8w4")]
-position = Vector2(48, 657)
+position = Vector2(87, 637)
 
 [node name="Table5" parent="Tables" instance=ExtResource("2_4o8w4")]
 position = Vector2(461, 490)
-
-[node name="Stations" type="Node2D" parent="."]
-process_mode = 1
-scale = Vector2(0.984984, 0.624815)
-
-[node name="SugarAndCreamStation" parent="Stations" instance=ExtResource("6_j5wo5")]
-position = Vector2(467.013, 476.941)
-scale = Vector2(1.01524, 1.60047)
-stationName = "Milk and Sugar"
-productType = 2
-
-[node name="CoffeeStation" parent="Stations" instance=ExtResource("6_j5wo5")]
-position = Vector2(97.4635, 152.045)
-scale = Vector2(1.01524, 1.60047)
-stationName = "Drip Coffee"
-
-[node name="SteamerStation" parent="Stations" instance=ExtResource("6_j5wo5")]
-position = Vector2(314.726, 312.092)
-scale = Vector2(1.01524, 1.60047)
-stationName = "Milk Steamer"
-productType = 3
-
-[node name="EspressoStation" parent="Stations" instance=ExtResource("6_j5wo5")]
-position = Vector2(563.461, 131.239)
-scale = Vector2(1.01524, 1.60047)
-stationName = "Espresso"
-productType = 0
 
 [node name="CustomerManager" type="Node2D" parent="." node_paths=PackedStringArray("tables")]
 process_mode = 1
@@ -342,13 +366,19 @@ autoplay = true
 [node name="GarbageCans" type="Node2D" parent="."]
 
 [node name="GarbageCan" parent="GarbageCans" instance=ExtResource("14_w40hf")]
-position = Vector2(408, 79)
+position = Vector2(470, 254)
 
 [node name="GarbageCan2" parent="GarbageCans" instance=ExtResource("14_w40hf")]
 position = Vector2(54, 525)
 
 [node name="GarbageCan3" parent="GarbageCans" instance=ExtResource("14_w40hf")]
-position = Vector2(179, 303)
+position = Vector2(161, 254)
+
+[node name="32x32-cube" type="Sprite2D" parent="."]
+modulate = Color(0.101563, 0.128906, 0.160156, 1)
+position = Vector2(335, 84.75)
+scale = Vector2(21.0625, 6.60938)
+texture = ExtResource("11_hfdru")
 
 [connection signal="body_entered" from="CameraTriggers/KitchenCameraTriggerLeft" to="." method="_on_change_camera" binds= ["kitchen"]]
 [connection signal="body_entered" from="CameraTriggers/KitchenCameraTriggerRight" to="." method="_on_change_camera" binds= ["kitchen"]]

@@ -34,7 +34,7 @@ func create_outer_horizontal_walls():
 	for i in GAME_WIDTH_UNITS:
 		var createdWall = wallScene.instantiate();
 		createdWall.position.x = 14 + (i * 32);
-		createdWall.position.y = 14;
+		createdWall.position.y = 206;
 		createdWall.get_node("Sprite2D").texture = top;
 		if(i == 0):
 			createdWall.get_node("Sprite2D").texture = topLeft;
