@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://7je3nu0pdsus"]
+[gd_scene load_steps=25 format=3 uid="uid://7je3nu0pdsus"]
 
 [ext_resource type="Script" path="res://scripts/gameManager.gd" id="1_84sy3"]
 [ext_resource type="PackedScene" uid="uid://bhasvup0wqgs5" path="res://scenes/player.tscn" id="1_fb7x5"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" path="res://scripts/CustomerManager.gd" id="7_buhyn"]
 [ext_resource type="Texture2D" uid="uid://db2f5y4oaunpq" path="res://art/chairs/chair-other-side-16x16.png" id="7_eh3a0"]
 [ext_resource type="Script" path="res://scripts/OrderManager.gd" id="8_gsm2p"]
+[ext_resource type="Texture2D" uid="uid://4jtghpsgsd0b" path="res://art/book-shelf-32x64.png" id="9_ejrr0"]
 [ext_resource type="Texture2D" uid="uid://caaemqq2ww1yi" path="res://art/32x32-cube.png" id="11_hfdru"]
 [ext_resource type="PackedScene" uid="uid://b2sjwuo7bihry" path="res://scenes/level_end.tscn" id="12_lmxvb"]
 [ext_resource type="AudioStream" uid="uid://qsbrpc8oo4hq" path="res://sounds/a_welcome_hauntingWAV.wav" id="13_au8kd"]
@@ -24,6 +25,15 @@ bg_color = Color(0.470588, 0.27451, 0.172549, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p1i2h"]
 bg_color = Color(0.670588, 0.423529, 0.27451, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ma0j4"]
+size = Vector2(95, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nsiut"]
+size = Vector2(32, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7ivl2"]
+size = Vector2(95, 65)
 
 [node name="Demo" type="Node2D"]
 process_mode = 3
@@ -100,6 +110,31 @@ texture = ExtResource("4_gnrei")
 position = Vector2(303, 689)
 texture = ExtResource("4_gnrei")
 
+[node name="Carpet3" type="Sprite2D" parent="Decorations"]
+position = Vector2(304, 589)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("4_gnrei")
+
+[node name="Carpet4" type="Sprite2D" parent="Decorations"]
+position = Vector2(516, 530)
+rotation = 0.385718
+scale = Vector2(1.75, 1.75)
+texture = ExtResource("4_gnrei")
+
+[node name="Carpet5" type="Sprite2D" parent="Decorations"]
+position = Vector2(52, 662)
+texture = ExtResource("4_gnrei")
+
+[node name="Carpet6" type="Sprite2D" parent="Decorations"]
+position = Vector2(185, 309)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("4_gnrei")
+
+[node name="Carpet7" type="Sprite2D" parent="Decorations"]
+position = Vector2(404, 87)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("4_gnrei")
+
 [node name="Door" type="Sprite2D" parent="Decorations"]
 position = Vector2(304, 707)
 texture = ExtResource("15_di38t")
@@ -122,7 +157,7 @@ scale = Vector2(2, 2)
 texture = ExtResource("6_cu1mm")
 
 [node name="Chair-side-16x19" type="Sprite2D" parent="Decorations/Chairs"]
-position = Vector2(456, 466)
+position = Vector2(446, 477)
 scale = Vector2(2, 2)
 texture = ExtResource("6_cu1mm")
 
@@ -137,7 +172,7 @@ scale = Vector2(2, 2)
 texture = ExtResource("7_eh3a0")
 
 [node name="Chair-other-side-16x17" type="Sprite2D" parent="Decorations/Chairs"]
-position = Vector2(507, 467)
+position = Vector2(485, 477)
 scale = Vector2(2, 2)
 texture = ExtResource("7_eh3a0")
 
@@ -157,7 +192,59 @@ scale = Vector2(2, 2)
 texture = ExtResource("7_eh3a0")
 
 [node name="Player" parent="." instance=ExtResource("1_fb7x5")]
-position = Vector2(303, 402)
+position = Vector2(331, 484)
+
+[node name="Bookshelves" type="Node2D" parent="."]
+
+[node name="Book-shelf-32x68" type="Sprite2D" parent="Bookshelves"]
+position = Vector2(155, 43)
+texture = ExtResource("9_ejrr0")
+
+[node name="Book-shelf-32x69" type="Sprite2D" parent="Bookshelves"]
+position = Vector2(187, 43)
+texture = ExtResource("9_ejrr0")
+
+[node name="Book-shelf-32x70" type="Sprite2D" parent="Bookshelves"]
+position = Vector2(218, 43)
+texture = ExtResource("9_ejrr0")
+
+[node name="Book-shelf-32x64" type="Sprite2D" parent="Bookshelves"]
+position = Vector2(442, 394)
+texture = ExtResource("9_ejrr0")
+
+[node name="Book-shelf-32x65" type="Sprite2D" parent="Bookshelves"]
+position = Vector2(474, 394)
+texture = ExtResource("9_ejrr0")
+
+[node name="Book-shelf-32x66" type="Sprite2D" parent="Bookshelves"]
+position = Vector2(505, 394)
+texture = ExtResource("9_ejrr0")
+
+[node name="Book-shelf-32x67" type="Sprite2D" parent="Bookshelves"]
+position = Vector2(32, 471)
+texture = ExtResource("9_ejrr0")
+
+[node name="ShelvesNearDoorBody" type="StaticBody2D" parent="Bookshelves"]
+position = Vector2(0, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bookshelves/ShelvesNearDoorBody"]
+visible = false
+position = Vector2(473.5, 394)
+shape = SubResource("RectangleShape2D_ma0j4")
+
+[node name="GarbageBody" type="StaticBody2D" parent="Bookshelves"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bookshelves/GarbageBody"]
+visible = false
+position = Vector2(32, 488)
+shape = SubResource("RectangleShape2D_nsiut")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Bookshelves"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bookshelves/StaticBody2D"]
+visible = false
+position = Vector2(186.5, 42.5)
+shape = SubResource("RectangleShape2D_7ivl2")
 
 [node name="StorefrontCamera" type="Camera2D" parent="."]
 position = Vector2(319, 542)
@@ -195,7 +282,7 @@ position = Vector2(581, 560)
 position = Vector2(48, 657)
 
 [node name="Table5" parent="Tables" instance=ExtResource("2_4o8w4")]
-position = Vector2(475, 477)
+position = Vector2(461, 490)
 
 [node name="Stations" type="Node2D" parent="."]
 process_mode = 1
