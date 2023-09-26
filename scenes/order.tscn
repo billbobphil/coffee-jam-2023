@@ -32,8 +32,8 @@ shape = SubResource("CircleShape2D_o8ntf")
 
 [node name="InteractSprite" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(0, 39)
-scale = Vector2(0.44, 0.46)
+position = Vector2(26, 0)
+scale = Vector2(0.2, 0.2)
 texture = ExtResource("3_xuywm")
 
 [node name="TimeRemainingBar" type="ProgressBar" parent="."]

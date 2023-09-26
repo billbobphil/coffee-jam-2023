@@ -1,14 +1,17 @@
-[gd_scene load_steps=18 format=3 uid="uid://7je3nu0pdsus"]
+[gd_scene load_steps=21 format=3 uid="uid://7je3nu0pdsus"]
 
 [ext_resource type="Script" path="res://scripts/gameManager.gd" id="1_84sy3"]
 [ext_resource type="PackedScene" uid="uid://bhasvup0wqgs5" path="res://scenes/player.tscn" id="1_fb7x5"]
 [ext_resource type="PackedScene" uid="uid://c6t81pnweu3om" path="res://scenes/table.tscn" id="2_4o8w4"]
 [ext_resource type="FontFile" uid="uid://cooklxfw2lwhf" path="res://fonts/PixelOperatorMono.ttf" id="2_5e2c6"]
 [ext_resource type="TileSet" uid="uid://c1l6kghem7y1p" path="res://tilesets/floor-tileset.tres" id="2_cl0di"]
+[ext_resource type="Texture2D" uid="uid://y3flof54fpmi" path="res://art/carpet.png" id="4_gnrei"]
 [ext_resource type="Script" path="res://scripts/WallGenerator.gd" id="4_nmx7f"]
 [ext_resource type="PackedScene" uid="uid://b1xl2nurgndxf" path="res://scenes/camera_trigger.tscn" id="5_yqnp0"]
+[ext_resource type="Texture2D" uid="uid://dmaek741bh3yv" path="res://art/chairs/chair-side-16x16.png" id="6_cu1mm"]
 [ext_resource type="PackedScene" uid="uid://mkw6mia3fmqe" path="res://scenes/station.tscn" id="6_j5wo5"]
 [ext_resource type="Script" path="res://scripts/CustomerManager.gd" id="7_buhyn"]
+[ext_resource type="Texture2D" uid="uid://db2f5y4oaunpq" path="res://art/chairs/chair-other-side-16x16.png" id="7_eh3a0"]
 [ext_resource type="Script" path="res://scripts/OrderManager.gd" id="8_gsm2p"]
 [ext_resource type="Texture2D" uid="uid://caaemqq2ww1yi" path="res://art/32x32-cube.png" id="11_hfdru"]
 [ext_resource type="PackedScene" uid="uid://b2sjwuo7bihry" path="res://scenes/level_end.tscn" id="12_lmxvb"]
@@ -35,19 +38,19 @@ layer_0/tile_data = PackedInt32Array(1441792, 65538, 1, 1441793, 65538, 1, 14417
 [node name="HUD" type="CanvasLayer" parent="."]
 
 [node name="RevenueLabel" type="Label" parent="HUD"]
-offset_left = 254.0
-offset_top = 340.0
-offset_right = 318.0
-offset_bottom = 363.0
+offset_left = 403.0
+offset_top = 342.0
+offset_right = 467.0
+offset_bottom = 365.0
 theme_override_colors/font_color = Color(0.298039, 0.172549, 0.129412, 1)
 theme_override_fonts/font = ExtResource("2_5e2c6")
 text = "Revenue:"
 
 [node name="RevenueText" type="Label" parent="HUD"]
-offset_left = 318.0
-offset_top = 340.0
-offset_right = 366.0
-offset_bottom = 363.0
+offset_left = 467.0
+offset_top = 342.0
+offset_right = 515.0
+offset_bottom = 365.0
 theme_override_colors/font_color = Color(0.819608, 0.619608, 0.47451, 1)
 theme_override_fonts/font = ExtResource("2_5e2c6")
 text = "$0.00"
@@ -82,6 +85,77 @@ theme_override_colors/font_color = Color(0.94902, 0.890196, 0.764706, 1)
 theme_override_fonts/font = ExtResource("2_5e2c6")
 text = "CLOSED"
 
+[node name="WallGenerator" type="Node2D" parent="."]
+process_mode = 1
+script = ExtResource("4_nmx7f")
+
+[node name="Decorations" type="Node2D" parent="."]
+
+[node name="Carpet" type="Sprite2D" parent="Decorations"]
+position = Vector2(187, 486)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("4_gnrei")
+
+[node name="Carpet2" type="Sprite2D" parent="Decorations"]
+position = Vector2(303, 689)
+texture = ExtResource("4_gnrei")
+
+[node name="Door" type="Sprite2D" parent="Decorations"]
+position = Vector2(304, 707)
+texture = ExtResource("15_di38t")
+
+[node name="Chairs" type="Node2D" parent="Decorations"]
+
+[node name="Chair-side-16x16" type="Sprite2D" parent="Decorations/Chairs"]
+position = Vector2(282, 574)
+scale = Vector2(2, 2)
+texture = ExtResource("6_cu1mm")
+
+[node name="Chair-side-16x17" type="Sprite2D" parent="Decorations/Chairs"]
+position = Vector2(158, 460)
+scale = Vector2(2, 2)
+texture = ExtResource("6_cu1mm")
+
+[node name="Chair-side-16x18" type="Sprite2D" parent="Decorations/Chairs"]
+position = Vector2(31, 645)
+scale = Vector2(2, 2)
+texture = ExtResource("6_cu1mm")
+
+[node name="Chair-side-16x19" type="Sprite2D" parent="Decorations/Chairs"]
+position = Vector2(456, 466)
+scale = Vector2(2, 2)
+texture = ExtResource("6_cu1mm")
+
+[node name="Chair-side-16x20" type="Sprite2D" parent="Decorations/Chairs"]
+position = Vector2(548, 543)
+scale = Vector2(2, 2)
+texture = ExtResource("6_cu1mm")
+
+[node name="Chair-other-side-16x16" type="Sprite2D" parent="Decorations/Chairs"]
+position = Vector2(328, 575)
+scale = Vector2(2, 2)
+texture = ExtResource("7_eh3a0")
+
+[node name="Chair-other-side-16x17" type="Sprite2D" parent="Decorations/Chairs"]
+position = Vector2(507, 467)
+scale = Vector2(2, 2)
+texture = ExtResource("7_eh3a0")
+
+[node name="Chair-other-side-16x18" type="Sprite2D" parent="Decorations/Chairs"]
+position = Vector2(598, 553)
+scale = Vector2(2, 2)
+texture = ExtResource("7_eh3a0")
+
+[node name="Chair-other-side-16x19" type="Sprite2D" parent="Decorations/Chairs"]
+position = Vector2(189, 458)
+scale = Vector2(2, 2)
+texture = ExtResource("7_eh3a0")
+
+[node name="Chair-other-side-16x20" type="Sprite2D" parent="Decorations/Chairs"]
+position = Vector2(65, 649)
+scale = Vector2(2, 2)
+texture = ExtResource("7_eh3a0")
+
 [node name="Player" parent="." instance=ExtResource("1_fb7x5")]
 position = Vector2(303, 402)
 
@@ -90,10 +164,6 @@ position = Vector2(319, 542)
 
 [node name="KitchenCamera" type="Camera2D" parent="."]
 position = Vector2(319, 181)
-
-[node name="WallGenerator" type="Node2D" parent="."]
-process_mode = 1
-script = ExtResource("4_nmx7f")
 
 [node name="CameraTriggers" type="Node2D" parent="."]
 process_mode = 1
@@ -192,12 +262,6 @@ position = Vector2(54, 525)
 
 [node name="GarbageCan3" parent="GarbageCans" instance=ExtResource("14_w40hf")]
 position = Vector2(179, 303)
-
-[node name="Decorations" type="Node2D" parent="."]
-
-[node name="Door" type="Sprite2D" parent="Decorations"]
-position = Vector2(304, 707)
-texture = ExtResource("15_di38t")
 
 [connection signal="body_entered" from="CameraTriggers/KitchenCameraTriggerLeft" to="." method="_on_change_camera" binds= ["kitchen"]]
 [connection signal="body_entered" from="CameraTriggers/KitchenCameraTriggerRight" to="." method="_on_change_camera" binds= ["kitchen"]]
