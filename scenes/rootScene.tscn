@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://7je3nu0pdsus"]
+[gd_scene load_steps=18 format=3 uid="uid://7je3nu0pdsus"]
 
 [ext_resource type="Script" path="res://scripts/gameManager.gd" id="1_84sy3"]
 [ext_resource type="PackedScene" uid="uid://bhasvup0wqgs5" path="res://scenes/player.tscn" id="1_fb7x5"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://b2sjwuo7bihry" path="res://scenes/level_end.tscn" id="12_lmxvb"]
 [ext_resource type="AudioStream" uid="uid://qsbrpc8oo4hq" path="res://sounds/a_welcome_hauntingWAV.wav" id="13_au8kd"]
 [ext_resource type="PackedScene" uid="uid://dcebjpxascjta" path="res://scenes/garbageCan.tscn" id="14_w40hf"]
+[ext_resource type="Texture2D" uid="uid://bkkyatagy8gkp" path="res://art/door-128x32.png" id="15_di38t"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_do34n"]
 bg_color = Color(0.470588, 0.27451, 0.172549, 1)
@@ -193,6 +194,10 @@ position = Vector2(54, 525)
 position = Vector2(179, 303)
 
 [node name="Decorations" type="Node2D" parent="."]
+
+[node name="Door" type="Sprite2D" parent="Decorations"]
+position = Vector2(304, 707)
+texture = ExtResource("15_di38t")
 
 [connection signal="body_entered" from="CameraTriggers/KitchenCameraTriggerLeft" to="." method="_on_change_camera" binds= ["kitchen"]]
 [connection signal="body_entered" from="CameraTriggers/KitchenCameraTriggerRight" to="." method="_on_change_camera" binds= ["kitchen"]]

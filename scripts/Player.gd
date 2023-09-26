@@ -2,8 +2,8 @@ extends CharacterBody2D
 
 class_name Player;
 
-const SPEED = 100;
-const DASH_SPEED_MULTIPLIER = 25;
+const SPEED = 175;
+const DASH_SPEED_MULTIPLIER = 15;
 const DASH_COOLDOWN = 1;
 signal interaction_triggered
 var isDashAvailable = true;
