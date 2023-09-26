@@ -66,6 +66,7 @@ func orderTimerRoutine(delta):
 		orderTimer -= delta;
 		get_node("TimeRemainingBar").value = (orderTimer / orderTimeMax) * 100; 
 		if(orderTimer <= 0):
+			customer.assignedTable.showPayoutInfo(-3);
 			order_expired.emit(self);
 			isOrderOnGoing = false;
 

@@ -47,6 +47,7 @@ func _on_order_expired(order : Order):
 	activeOrders.erase(order);
 	order.customer.orderCompleted();
 	order.queue_free();
+	payout_triggered.emit(-3);
 	
 func defineOrderRequirements(product : Product):
 	if(product.type == Product.productTypes.coffee):

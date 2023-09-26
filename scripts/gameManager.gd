@@ -9,7 +9,7 @@ var currentCamPosition = cam_positions.STOREFRONT;
 var kitchenCamera;
 var storefrontCamera;
 var totalRevenue : float = 0;
-@export var dayLength: float = 30;
+@export var dayLength: float = 300;
 var dayTimer = 0;
 var timeRemainingBar;
 var isShopOpen : bool = true;
@@ -61,6 +61,9 @@ func change_camera(triggerName):
 		
 func _on_payout_triggered(amount : float):
 	print("Payout triggered");
-	totalRevenue += amount;
+	if(totalRevenue + amount <= 0):
+		totalRevenue = 0;
+	else:
+		totalRevenue += amount;
 	totalCustomersServed += 1;
 	get_node("HUD/RevenueText").text = "$" + str(totalRevenue);
