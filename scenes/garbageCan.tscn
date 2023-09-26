@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://dcebjpxascjta"]
+
+[ext_resource type="Script" path="res://scripts/garbageCan.gd" id="1_nufb7"]
+[ext_resource type="Texture2D" uid="uid://ux3qtjilrk4b" path="res://art/garbage-can-32x32.png" id="2_08kc5"]
+[ext_resource type="Texture2D" uid="uid://b4fs84xl6r4qr" path="res://art/F_Key_Light.png" id="2_lrgjj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_scdr8"]
+radius = 39.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sssmu"]
+radius = 17.0294
+
+[node name="GarbageCan" type="Node2D"]
+script = ExtResource("1_nufb7")
+
+[node name="CanSprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_08kc5")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
+shape = SubResource("CircleShape2D_scdr8")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+visible = false
+shape = SubResource("CircleShape2D_sssmu")
+debug_color = Color(0.890196, 0.309804, 0.27451, 0.419608)
+
+[node name="InteractSprite" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -36)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_lrgjj")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

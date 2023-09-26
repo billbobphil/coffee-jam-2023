@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://7je3nu0pdsus"]
+[gd_scene load_steps=17 format=3 uid="uid://7je3nu0pdsus"]
 
 [ext_resource type="Script" path="res://scripts/gameManager.gd" id="1_84sy3"]
 [ext_resource type="PackedScene" uid="uid://bhasvup0wqgs5" path="res://scenes/player.tscn" id="1_fb7x5"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://caaemqq2ww1yi" path="res://art/32x32-cube.png" id="11_hfdru"]
 [ext_resource type="PackedScene" uid="uid://b2sjwuo7bihry" path="res://scenes/level_end.tscn" id="12_lmxvb"]
 [ext_resource type="AudioStream" uid="uid://qsbrpc8oo4hq" path="res://sounds/a_welcome_hauntingWAV.wav" id="13_au8kd"]
+[ext_resource type="PackedScene" uid="uid://dcebjpxascjta" path="res://scenes/garbageCan.tscn" id="14_w40hf"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_do34n"]
 bg_color = Color(0.470588, 0.27451, 0.172549, 1)
@@ -141,7 +142,7 @@ scale = Vector2(1.01524, 1.60047)
 stationName = "Drip Coffee"
 
 [node name="SteamerStation" parent="Stations" instance=ExtResource("6_j5wo5")]
-position = Vector2(323.863, 300.889)
+position = Vector2(314.726, 312.092)
 scale = Vector2(1.01524, 1.60047)
 stationName = "Milk Steamer"
 productType = 3
@@ -179,6 +180,19 @@ visible = false
 stream = ExtResource("13_au8kd")
 volume_db = -7.5
 autoplay = true
+
+[node name="GarbageCans" type="Node2D" parent="."]
+
+[node name="GarbageCan" parent="GarbageCans" instance=ExtResource("14_w40hf")]
+position = Vector2(408, 79)
+
+[node name="GarbageCan2" parent="GarbageCans" instance=ExtResource("14_w40hf")]
+position = Vector2(54, 525)
+
+[node name="GarbageCan3" parent="GarbageCans" instance=ExtResource("14_w40hf")]
+position = Vector2(179, 303)
+
+[node name="Decorations" type="Node2D" parent="."]
 
 [connection signal="body_entered" from="CameraTriggers/KitchenCameraTriggerLeft" to="." method="_on_change_camera" binds= ["kitchen"]]
 [connection signal="body_entered" from="CameraTriggers/KitchenCameraTriggerRight" to="." method="_on_change_camera" binds= ["kitchen"]]
