@@ -369,7 +369,7 @@ position = Vector2(598, 674)
 [node name="GarbageCan3" parent="GarbageCans" instance=ExtResource("14_w40hf")]
 position = Vector2(161, 254)
 
-[node name="32x32-cube" type="Sprite2D" parent="."]
+[node name="ScreenCover" type="Sprite2D" parent="."]
 modulate = Color(0.101563, 0.128906, 0.160156, 1)
 position = Vector2(335, 84.75)
 scale = Vector2(21.0625, 6.60938)
