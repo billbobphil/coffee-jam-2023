@@ -5,8 +5,9 @@ var canInteract : bool = false;
 var playerRef : Player;
 
 func _process(delta):
-	if(Input.is_action_just_pressed("interact") && canInteract):
+	if(Input.is_action_just_pressed("interact") && canInteract && playerRef.heldProduct):
 		playerRef.takeProduct();
+		$InteractSoundEffect.play();
 
 func _on_area_2d_body_entered(body):
 	if(body.name == "Player"):

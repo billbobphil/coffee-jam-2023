@@ -11,6 +11,10 @@ var spawnPosition : Vector2;
 var type : Customer.Types;
 var customerSprite;
 
+@export var ghostSoundEffect : AudioStream;
+@export var pumpkinSoundEffect: AudioStream;
+@export var spiderSoundEffect: AudioStream;
+
 enum Types {
 	SPIDER,
 	PUMPKIN,
@@ -51,6 +55,14 @@ func assignTable(table:Table):
 
 func orderCompleted():
 	print("Customer should leave now")
+	
+	if(type == Types.SPIDER):
+		$SuccessfulSoundEffect.stream = spiderSoundEffect;
+	elif(type == Types.GHOST):
+		$SuccessfulSoundEffect.stream = ghostSoundEffect;
+	elif(type == Types.PUMPKIN):
+		$SuccessfulSoundEffect.stream = pumpkinSoundEffect;
+	$SuccessfulSoundEffect.play();
 	shouldLeave = true;
 	
 func assignType(typeToAssign : Types):

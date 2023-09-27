@@ -23,7 +23,6 @@ var customer : Customer;
 var canOrderBeInteractedWith : bool = false;
 var requiredOrder : Product;
 
-
 signal order_expired;
 signal order_fulfilled;
 signal payout_triggered;
@@ -97,6 +96,7 @@ func _on_player_interaction_triggered(player: Player):
 			orderCompletedSuccessfully(player);
 		else:
 			print("Order not satisfied")
+			$BadOrderSoundEffect.play();
 		
 func isOrderSatisfied(deliveredProduct : Product):
 	print("Analyzing if product is sufficient");

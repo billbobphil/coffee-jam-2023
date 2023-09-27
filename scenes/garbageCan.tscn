@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dcebjpxascjta"]
+[gd_scene load_steps=7 format=3 uid="uid://dcebjpxascjta"]
 
 [ext_resource type="Script" path="res://scripts/garbageCan.gd" id="1_nufb7"]
 [ext_resource type="Texture2D" uid="uid://ux3qtjilrk4b" path="res://art/garbage-can-32x32.png" id="2_08kc5"]
 [ext_resource type="Texture2D" uid="uid://b4fs84xl6r4qr" path="res://art/F_Key_Light.png" id="2_lrgjj"]
+[ext_resource type="AudioStream" uid="uid://crvcdnjnl5guh" path="res://sound/interact-successful.ogg" id="4_aua78"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_scdr8"]
 radius = 39.0
@@ -34,6 +35,10 @@ visible = false
 position = Vector2(0, -36)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_lrgjj")
+
+[node name="InteractSoundEffect" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_aua78")
+volume_db = -5.0
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

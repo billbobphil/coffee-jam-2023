@@ -49,4 +49,5 @@ func _on_player_interaction_triggered(player: Player):
 		product.type = productType;
 		if(player.canAcceptProduct(product)):
 			player.giveProduct(product);
+			$InteractSoundEffect.play();
 		

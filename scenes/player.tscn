@@ -1,8 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://bhasvup0wqgs5"]
+[gd_scene load_steps=13 format=3 uid="uid://bhasvup0wqgs5"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_fwv3v"]
 [ext_resource type="Texture2D" uid="uid://d2kvjsrxxe3pw" path="res://art/player-32x32.png" id="2_6mroy"]
+[ext_resource type="AudioStream" uid="uid://bq73ivpjps4yy" path="res://sound/player-footsteps.ogg" id="2_b7yc3"]
 [ext_resource type="Texture2D" uid="uid://caaemqq2ww1yi" path="res://art/32x32-cube.png" id="2_g1qbd"]
+[ext_resource type="AudioStream" uid="uid://dbmym4h6r6c4f" path="res://sound/player-footsteps-2.ogg" id="4_pycdl"]
+[ext_resource type="AudioStream" uid="uid://b51lyw5vwde88" path="res://sound/player-footsteps-3.ogg" id="4_qbhi3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5dco3"]
 atlas = ExtResource("2_6mroy")
@@ -62,6 +65,7 @@ radius = 16.0312
 process_mode = 1
 position = Vector2(16, 16)
 script = ExtResource("1_fwv3v")
+moveSoundEffects = Array[AudioStream]([ExtResource("4_qbhi3"), ExtResource("2_b7yc3")])
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_swfsu")
@@ -94,3 +98,7 @@ position = Vector2(0, -21)
 
 [node name="Bottom" type="Node2D" parent="ProductPositions"]
 position = Vector2(0, 8)
+
+[node name="MoveSoundEffect" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_pycdl")
+volume_db = -15.0

@@ -21,6 +21,9 @@ var latteSprite = preload("res://art/latte-32x32.png");
 @onready var topProductPosition = get_node("ProductPositions/Top");
 @onready var bottomProductPosition = get_node("ProductPositions/Bottom");
 @onready var productSprite : Sprite2D = $ProductSprite;
+@onready var moveSoundEffect = $MoveSoundEffect;
+@export var moveSoundEffects : Array[AudioStream];
+var moveSoundEffectsIndex = 0;
 
 func _ready():
 	#TODO: add logic to _process to understand which sprite to use
@@ -34,6 +37,13 @@ func _physics_process(delta):
 		isDashAvailable = false
 		dashTimer = 0;
 	velocity = direction * moveSpeed
+	if(velocity.x != 0 || velocity.y != 0) :
+		if(!moveSoundEffect.playing):
+			moveSoundEffect.stream = moveSoundEffects[moveSoundEffectsIndex];
+			moveSoundEffect.play();
+			moveSoundEffectsIndex += 1;
+			if(moveSoundEffectsIndex >= moveSoundEffects.size()):
+				moveSoundEffectsIndex = 0;
 	move_and_slide()
 	
 func _process(delta):

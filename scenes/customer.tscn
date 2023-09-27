@@ -1,10 +1,13 @@
-[gd_scene load_steps=14 format=3 uid="uid://cj2hgta0gfds3"]
+[gd_scene load_steps=17 format=3 uid="uid://cj2hgta0gfds3"]
 
 [ext_resource type="Texture2D" uid="uid://caaemqq2ww1yi" path="res://art/32x32-cube.png" id="1_gwl3m"]
 [ext_resource type="Script" path="res://scripts/customer.gd" id="1_mei5i"]
+[ext_resource type="AudioStream" uid="uid://dal5i37n5erlx" path="res://sound/ghost-accept-order.ogg" id="2_6lctj"]
 [ext_resource type="Texture2D" uid="uid://cty04anol7742" path="res://art/ghost-32x32.png" id="2_fg6ny"]
 [ext_resource type="Texture2D" uid="uid://gqfvxqb8fmex" path="res://art/pumpkin-32x32.png" id="3_2858x"]
+[ext_resource type="AudioStream" uid="uid://f4tmbks4501m" path="res://sound/pumpkin-accept-order.ogg" id="3_b3nvi"]
 [ext_resource type="Texture2D" uid="uid://c4ska0kviy3ev" path="res://art/spider-32x32.png" id="4_d4lyk"]
+[ext_resource type="AudioStream" uid="uid://8d8m8img5x4p" path="res://sound/spider-accept-order.ogg" id="4_k4ur5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nc0c3"]
 atlas = ExtResource("2_fg6ny")
@@ -88,6 +91,9 @@ radius = 16.1245
 process_mode = 1
 script = ExtResource("1_mei5i")
 speed = 80.0
+ghostSoundEffect = ExtResource("2_6lctj")
+pumpkinSoundEffect = ExtResource("3_b3nvi")
+spiderSoundEffect = ExtResource("4_k4ur5")
 
 [node name="CustomerSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_2ndaw")
@@ -102,3 +108,6 @@ texture = ExtResource("1_gwl3m")
 visible = false
 shape = SubResource("CircleShape2D_dovwc")
 debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="SuccessfulSoundEffect" type="AudioStreamPlayer" parent="."]
+volume_db = -15.0

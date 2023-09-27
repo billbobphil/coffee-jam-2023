@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://7je3nu0pdsus"]
+[gd_scene load_steps=29 format=3 uid="uid://7je3nu0pdsus"]
 
 [ext_resource type="Script" path="res://scripts/gameManager.gd" id="1_84sy3"]
 [ext_resource type="PackedScene" uid="uid://bhasvup0wqgs5" path="res://scenes/player.tscn" id="1_fb7x5"]
@@ -12,6 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://mkw6mia3fmqe" path="res://scenes/station.tscn" id="6_j5wo5"]
 [ext_resource type="Script" path="res://scripts/CustomerManager.gd" id="7_buhyn"]
 [ext_resource type="Texture2D" uid="uid://db2f5y4oaunpq" path="res://art/chairs/chair-other-side-16x16.png" id="7_eh3a0"]
+[ext_resource type="Script" path="res://scripts/Door.gd" id="7_ya60c"]
+[ext_resource type="AudioStream" uid="uid://tnmxm3e4qr8y" path="res://sound/shop-door-bell.wav" id="8_53icr"]
 [ext_resource type="Script" path="res://scripts/OrderManager.gd" id="8_gsm2p"]
 [ext_resource type="Texture2D" uid="uid://4jtghpsgsd0b" path="res://art/book-shelf-32x64.png" id="9_ejrr0"]
 [ext_resource type="Texture2D" uid="uid://caaemqq2ww1yi" path="res://art/32x32-cube.png" id="11_hfdru"]
@@ -19,12 +21,16 @@
 [ext_resource type="AudioStream" uid="uid://qsbrpc8oo4hq" path="res://sounds/a_welcome_hauntingWAV.wav" id="13_au8kd"]
 [ext_resource type="PackedScene" uid="uid://dcebjpxascjta" path="res://scenes/garbageCan.tscn" id="14_w40hf"]
 [ext_resource type="Texture2D" uid="uid://bkkyatagy8gkp" path="res://art/door-128x32.png" id="15_di38t"]
+[ext_resource type="AudioStream" uid="uid://q655geqvg6ei" path="res://sound/cofee-shop-ambience.mp3" id="22_b4u4q"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_do34n"]
 bg_color = Color(0.470588, 0.27451, 0.172549, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p1i2h"]
 bg_color = Color(0.670588, 0.423529, 0.27451, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jhol6"]
+size = Vector2(286, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ma0j4"]
 size = Vector2(95, 64)
@@ -138,6 +144,16 @@ texture = ExtResource("4_gnrei")
 [node name="Door" type="Sprite2D" parent="Decorations"]
 position = Vector2(304, 707)
 texture = ExtResource("15_di38t")
+script = ExtResource("7_ya60c")
+
+[node name="Area2D" type="Area2D" parent="Decorations/Door"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Decorations/Door/Area2D"]
+position = Vector2(0, -5)
+shape = SubResource("RectangleShape2D_jhol6")
+
+[node name="DoorSoundEffect" type="AudioStreamPlayer" parent="Decorations/Door"]
+stream = ExtResource("8_53icr")
 
 [node name="Chairs" type="Node2D" parent="Decorations"]
 
@@ -190,6 +206,17 @@ texture = ExtResource("7_eh3a0")
 position = Vector2(106, 623)
 scale = Vector2(2, 2)
 texture = ExtResource("7_eh3a0")
+
+[node name="GarbageCans" type="Node2D" parent="."]
+
+[node name="GarbageCan" parent="GarbageCans" instance=ExtResource("14_w40hf")]
+position = Vector2(470, 254)
+
+[node name="GarbageCan2" parent="GarbageCans" instance=ExtResource("14_w40hf")]
+position = Vector2(598, 674)
+
+[node name="GarbageCan3" parent="GarbageCans" instance=ExtResource("14_w40hf")]
+position = Vector2(161, 254)
 
 [node name="Stations" type="Node2D" parent="."]
 process_mode = 1
@@ -353,21 +380,15 @@ texture = ExtResource("11_hfdru")
 process_mode = 3
 visible = false
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("13_au8kd")
-volume_db = -7.5
+volume_db = -10.0
 autoplay = true
 
-[node name="GarbageCans" type="Node2D" parent="."]
-
-[node name="GarbageCan" parent="GarbageCans" instance=ExtResource("14_w40hf")]
-position = Vector2(470, 254)
-
-[node name="GarbageCan2" parent="GarbageCans" instance=ExtResource("14_w40hf")]
-position = Vector2(598, 674)
-
-[node name="GarbageCan3" parent="GarbageCans" instance=ExtResource("14_w40hf")]
-position = Vector2(161, 254)
+[node name="AmbiencePlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("22_b4u4q")
+volume_db = 3.0
+autoplay = true
 
 [node name="ScreenCover" type="Sprite2D" parent="."]
 modulate = Color(0.101563, 0.128906, 0.160156, 1)
@@ -375,6 +396,7 @@ position = Vector2(335, 84.75)
 scale = Vector2(21.0625, 6.60938)
 texture = ExtResource("11_hfdru")
 
+[connection signal="body_entered" from="Decorations/Door/Area2D" to="Decorations/Door" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="CameraTriggers/KitchenCameraTriggerLeft" to="." method="_on_change_camera" binds= ["kitchen"]]
 [connection signal="body_entered" from="CameraTriggers/KitchenCameraTriggerRight" to="." method="_on_change_camera" binds= ["kitchen"]]
 [connection signal="body_entered" from="CameraTriggers/StorefrontCameraTriggerLeft" to="." method="_on_change_camera" binds= ["storefront"]]
