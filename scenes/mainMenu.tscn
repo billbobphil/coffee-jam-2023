@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dddumebb8uqad"]
+[gd_scene load_steps=12 format=3 uid="uid://dddumebb8uqad"]
 
 [ext_resource type="Script" path="res://scripts/mainMenu.gd" id="1_jvkjm"]
 [ext_resource type="Texture2D" uid="uid://caaemqq2ww1yi" path="res://art/32x32-cube.png" id="1_stj5y"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://df3uxqwbc6ncl" path="res://art/32x32-circle.png" id="3_1xsvt"]
 [ext_resource type="AudioStream" uid="uid://qsbrpc8oo4hq" path="res://sounds/a_welcome_hauntingWAV.wav" id="4_3keb5"]
 [ext_resource type="Texture2D" uid="uid://wokusc17t2uk" path="res://art/espresso-black-32x32.png" id="5_25olw"]
+[ext_resource type="AudioStream" uid="uid://60fmbdy0j5tl" path="res://sound/ButtonHover.wav" id="7_t1nif"]
+[ext_resource type="AudioStream" uid="uid://vubm5k658do5" path="res://sound/button-click.wav" id="8_b70q0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pik7t"]
 bg_color = Color(0.667969, 0.421875, 0.273438, 1)
@@ -93,9 +95,9 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_xaehr")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_5rsgm")
 text = "PLAY"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_3keb5")
-volume_db = -7.5
+volume_db = -9.0
 autoplay = true
 
 [node name="Espresso-black-32x32" type="Sprite2D" parent="."]
@@ -103,4 +105,13 @@ position = Vector2(242, 234)
 scale = Vector2(4, 4)
 texture = ExtResource("5_25olw")
 
+[node name="ButtonHoverSoundEffect" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_t1nif")
+volume_db = -5.0
+
+[node name="ButtonClickSoundEffect" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_b70q0")
+volume_db = -5.0
+
+[connection signal="mouse_entered" from="PlayButton" to="." method="_on_play_button_mouse_entered"]
 [connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]

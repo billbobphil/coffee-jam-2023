@@ -1,9 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://b2sjwuo7bihry"]
+[gd_scene load_steps=12 format=3 uid="uid://b2sjwuo7bihry"]
 
 [ext_resource type="Texture2D" uid="uid://caaemqq2ww1yi" path="res://art/32x32-cube.png" id="1_0hnia"]
 [ext_resource type="Script" path="res://scripts/level_end.gd" id="1_g1t7a"]
 [ext_resource type="FontFile" uid="uid://cooklxfw2lwhf" path="res://fonts/PixelOperatorMono.ttf" id="2_kc3iu"]
 [ext_resource type="Texture2D" uid="uid://df3uxqwbc6ncl" path="res://art/32x32-circle.png" id="2_o861r"]
+[ext_resource type="AudioStream" uid="uid://60fmbdy0j5tl" path="res://sound/ButtonHover.wav" id="5_sky68"]
+[ext_resource type="AudioStream" uid="uid://vubm5k658do5" path="res://sound/button-click.wav" id="6_vvxff"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oanhe"]
 bg_color = Color(0.670588, 0.423529, 0.27451, 1)
@@ -117,5 +119,15 @@ text = "MENU"
 
 [node name="LevelEndScreen" type="Node2D" parent="."]
 
+[node name="ButtonHoverEffect" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_sky68")
+volume_db = -5.0
+
+[node name="ButtonClickEffect" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_vvxff")
+volume_db = -5.0
+
+[connection signal="mouse_entered" from="PlayAgainButton" to="." method="_on_play_again_button_mouse_entered"]
 [connection signal="pressed" from="PlayAgainButton" to="." method="_on_play_again_button_pressed"]
+[connection signal="mouse_entered" from="MenuButton" to="." method="_on_menu_button_mouse_entered"]
 [connection signal="pressed" from="MenuButton" to="." method="_on_menu_button_pressed"]
