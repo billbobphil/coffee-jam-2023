@@ -13,6 +13,7 @@ func _process(delta):
 	
 	if(Input.is_action_just_pressed("dash") && !isDepressed):
 		isDepressed = true;
+		$WhiffSoundEffect.play();
 		position.y = 220 - 16;
 		await get_tree().create_timer(.2).timeout;
 		position.y = 90;

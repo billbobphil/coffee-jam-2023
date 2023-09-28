@@ -11,6 +11,7 @@ signal espresso_mini_game_completed;
 func _on_area_2d_body_entered(body):
 	if(body.name == "EspressoPresserCollider"):
 		print("DID IT!")
+		$ThudSoundEffect.play();
 		numberOfSuccesses += 1;
 		updateSuccessSprites();
 		if(numberOfSuccesses == 3):

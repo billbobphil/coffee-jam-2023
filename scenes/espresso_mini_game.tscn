@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dr4tm5uks77a5"]
+[gd_scene load_steps=19 format=3 uid="uid://dr4tm5uks77a5"]
 
 [ext_resource type="Texture2D" uid="uid://caaemqq2ww1yi" path="res://art/32x32-cube.png" id="1_5647s"]
 [ext_resource type="Script" path="res://scripts/espresso_mini_game.gd" id="1_pdyxi"]
@@ -10,12 +10,15 @@
 [ext_resource type="Texture2D" uid="uid://ba2xun1c0f6x4" path="res://art/espresso-puck-done.png" id="4_rmd5q"]
 [ext_resource type="Texture2D" uid="uid://df3uxqwbc6ncl" path="res://art/32x32-circle.png" id="6_3woro"]
 [ext_resource type="Texture2D" uid="uid://cywl0jo8j6elu" path="res://art/Space_Key_Light.png" id="7_byje2"]
+[ext_resource type="Texture2D" uid="uid://do84dbxusn65d" path="res://art/handle.png" id="7_xs734"]
 [ext_resource type="Texture2D" uid="uid://bse0syiko5u75" path="res://art/success_indicator_empty.png" id="8_cpfim"]
 [ext_resource type="Texture2D" uid="uid://1jg1ulu5eeyp" path="res://art/espresso-presser.png" id="9_iljwa"]
+[ext_resource type="AudioStream" uid="uid://x2o2vt1uvqo0" path="res://sound/whiff.wav" id="11_kbj0a"]
 [ext_resource type="Texture2D" uid="uid://ba1g0ttfuwek7" path="res://art/coffee-station-64x64.png" id="12_jpa7h"]
+[ext_resource type="AudioStream" uid="uid://dej16mfpp4ar6" path="res://sound/thud.mp3" id="14_b7ioc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_24vq6"]
-size = Vector2(88, 36)
+size = Vector2(76, 36)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jmomd"]
 size = Vector2(8, 32)
@@ -51,13 +54,18 @@ speed = 550.0
 leftBound = 120
 rightBound = 520
 
+[node name="Handle" type="Sprite2D" parent="EspressoPuck"]
+position = Vector2(-96, 5)
+scale = Vector2(1.49219, 1.49219)
+texture = ExtResource("7_xs734")
+
 [node name="Sprite2D" type="Sprite2D" parent="EspressoPuck"]
 texture = ExtResource("4_2m25h")
 
 [node name="Area2D" type="Area2D" parent="EspressoPuck"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EspressoPuck/Area2D"]
-position = Vector2(1, -8)
+position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_24vq6")
 
 [node name="Shadow" type="Sprite2D" parent="EspressoPuck"]
@@ -88,6 +96,9 @@ position = Vector2(-0.499994, 185)
 scale = Vector2(0.96875, 0.40625)
 texture = ExtResource("6_3woro")
 
+[node name="WhiffSoundEffect" type="AudioStreamPlayer" parent="EspressoPresser"]
+stream = ExtResource("11_kbj0a")
+
 [node name="SuccessIndicator_One" type="Sprite2D" parent="."]
 position = Vector2(503, 35)
 scale = Vector2(2, 2)
@@ -110,5 +121,8 @@ texture = ExtResource("7_byje2")
 [node name="Coffee-station-64x64" type="Sprite2D" parent="."]
 position = Vector2(-102, 254)
 texture = ExtResource("12_jpa7h")
+
+[node name="ThudSoundEffect" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_b7ioc")
 
 [connection signal="body_entered" from="EspressoPuck/Area2D" to="." method="_on_area_2d_body_entered"]
