@@ -11,6 +11,8 @@ var stationCanBeInteractedWith = false;
 
 @export var productType : Product.productTypes = Product.productTypes.coffee;
 
+signal minigame_started;
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	keyPromptSprite = get_node("Key Prompt Sprite");
@@ -50,4 +52,5 @@ func _on_player_interaction_triggered(player: Player):
 		if(player.canAcceptProduct(product)):
 			player.giveProduct(product);
 			$InteractSoundEffect.play();
+		minigame_started.emit(stationName);
 		

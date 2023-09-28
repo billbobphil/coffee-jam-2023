@@ -24,12 +24,15 @@ var latteSprite = preload("res://art/latte-32x32.png");
 @onready var moveSoundEffect = $MoveSoundEffect;
 @export var moveSoundEffects : Array[AudioStream];
 var moveSoundEffectsIndex = 0;
+var areInputsEnabled = true;
 
 func _ready():
 	#TODO: add logic to _process to understand which sprite to use
 	animatedSprite.play("walk_down");
 
 func _physics_process(delta):
+	if(!areInputsEnabled): return;
+	
 	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	var moveSpeed = SPEED;
 	if(Input.is_action_just_pressed("dash") && isDashAvailable):
@@ -47,6 +50,8 @@ func _physics_process(delta):
 	move_and_slide()
 	
 func _process(delta):
+	if(!areInputsEnabled): return;
+	
 	dashTimer += delta;
 	if(Input.is_action_just_pressed("interact")):
 		print("Player pressed interact")

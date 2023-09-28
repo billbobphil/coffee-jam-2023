@@ -16,6 +16,13 @@ var isShopOpen : bool = true;
 var levelEndScreen;
 var totalCustomersServed = 0;
 
+@export var espressoMinigame : PackedScene;
+@export var latteMinigame : PackedScene;
+@export var sugarMinigame : PackedScene;
+@export var coffeeMinigame : PackedScene;
+
+var activeMiniGameReference;
+
 func _ready():
 	get_tree().paused = false;
 	kitchenCamera = $KitchenCamera;
@@ -67,3 +74,28 @@ func _on_payout_triggered(amount : float):
 		totalRevenue += amount;
 	totalCustomersServed += 1;
 	get_node("HUD/RevenueText").text = "$" + str(totalRevenue);
+
+
+func _on_minigame_started(stationName):
+	print("STATION MINIGAME STARTED: " + stationName);
+	$Player.areInputsEnabled = false;
+	if(stationName == "Espresso"):
+		activeMiniGameReference = espressoMinigame.instantiate();
+		add_child(activeMiniGameReference);
+		activeMiniGameReference.espresso_mini_game_completed.connect(_on_minigame_completed);
+	elif(stationName == "Milk Steamer"):
+		activeMiniGameReference = latteMinigame.instantiate();
+		add_child(activeMiniGameReference);
+		activeMiniGameReference.latte_mini_game_completed.connect(_on_minigame_completed);
+	elif(stationName == "Drip Coffee"):
+		activeMiniGameReference = coffeeMinigame.instantiate();
+		add_child(activeMiniGameReference);
+		activeMiniGameReference.coffee_mini_game_completed.connect(_on_minigame_completed);
+	elif(stationName == "Milk and Sugar"):
+		activeMiniGameReference = sugarMinigame.instantiate();
+		add_child(activeMiniGameReference);
+		activeMiniGameReference.milk_and_sugar_mini_game_completed.connect(_on_minigame_completed);
+		
+func _on_minigame_completed():
+	$Player.areInputsEnabled = true;
+	activeMiniGameReference.queue_free();
