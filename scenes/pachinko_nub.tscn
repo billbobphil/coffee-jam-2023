@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://b5nanus0xc7ci"]
+
+[ext_resource type="Texture2D" uid="uid://df3uxqwbc6ncl" path="res://art/32x32-circle.png" id="1_cv8g2"]
+[ext_resource type="Script" path="res://scripts/pachinko_nub.gd" id="1_dr4n3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_o7iuc"]
+radius = 4.12311
+
+[node name="PachinkoNub" type="StaticBody2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_dr4n3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.125, 0.0742188, 0.0546875, 1)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_cv8g2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CircleShape2D_o7iuc")

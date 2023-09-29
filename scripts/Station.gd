@@ -52,5 +52,5 @@ func _on_player_interaction_triggered(player: Player):
 		if(player.canAcceptProduct(product)):
 			player.giveProduct(product);
 			$InteractSoundEffect.play();
-		minigame_started.emit(stationName);
+			minigame_started.emit(stationName);
 		

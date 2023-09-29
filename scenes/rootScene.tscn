@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://7je3nu0pdsus"]
+[gd_scene load_steps=31 format=3 uid="uid://7je3nu0pdsus"]
 
 [ext_resource type="Script" path="res://scripts/gameManager.gd" id="1_84sy3"]
 [ext_resource type="PackedScene" uid="uid://bhasvup0wqgs5" path="res://scenes/player.tscn" id="1_fb7x5"]
@@ -6,6 +6,7 @@
 [ext_resource type="FontFile" uid="uid://cooklxfw2lwhf" path="res://fonts/PixelOperatorMono.ttf" id="2_5e2c6"]
 [ext_resource type="TileSet" uid="uid://c1l6kghem7y1p" path="res://tilesets/floor-tileset.tres" id="2_cl0di"]
 [ext_resource type="PackedScene" uid="uid://dr4tm5uks77a5" path="res://scenes/espresso_mini_game.tscn" id="2_wq2en"]
+[ext_resource type="PackedScene" uid="uid://ct3xx5yu7qsas" path="res://scenes/drip_coffee_mini_game.tscn" id="3_fv6t8"]
 [ext_resource type="Texture2D" uid="uid://y3flof54fpmi" path="res://art/carpet.png" id="4_gnrei"]
 [ext_resource type="Script" path="res://scripts/WallGenerator.gd" id="4_nmx7f"]
 [ext_resource type="PackedScene" uid="uid://b1xl2nurgndxf" path="res://scenes/camera_trigger.tscn" id="5_yqnp0"]
@@ -46,6 +47,7 @@ size = Vector2(95, 65)
 process_mode = 3
 script = ExtResource("1_84sy3")
 espressoMinigame = ExtResource("2_wq2en")
+coffeeMinigame = ExtResource("3_fv6t8")
 
 [node name="TileMap" type="TileMap" parent="."]
 modulate = Color(0.615686, 0.615686, 0.615686, 1)
@@ -399,6 +401,7 @@ scale = Vector2(21.0625, 6.60938)
 texture = ExtResource("11_hfdru")
 
 [connection signal="body_entered" from="Decorations/Door/Area2D" to="Decorations/Door" method="_on_area_2d_body_entered"]
+[connection signal="minigame_started" from="Stations/CoffeeStation" to="." method="_on_minigame_started"]
 [connection signal="minigame_started" from="Stations/EspressoStation" to="." method="_on_minigame_started"]
 [connection signal="body_entered" from="CameraTriggers/KitchenCameraTriggerLeft" to="." method="_on_change_camera" binds= ["kitchen"]]
 [connection signal="body_entered" from="CameraTriggers/KitchenCameraTriggerRight" to="." method="_on_change_camera" binds= ["kitchen"]]

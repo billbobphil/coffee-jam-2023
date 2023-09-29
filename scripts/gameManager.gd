@@ -42,7 +42,7 @@ func _process(delta):
 		levelEndScreen.showDialog(totalCustomersServed, totalRevenue);
 		get_tree().paused = true;
 		
-	if(Input.is_action_just_pressed("change_camera")):
+	if(Input.is_action_just_pressed("change_camera") && !activeMiniGameReference):
 		change_camera("button");
 		
 func _on_change_camera(body, triggerName):

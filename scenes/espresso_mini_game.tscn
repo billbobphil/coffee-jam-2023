@@ -9,13 +9,13 @@
 [ext_resource type="Texture2D" uid="uid://q6g0oxfej0lk" path="res://art/espresso-puck-full.png" id="4_2m25h"]
 [ext_resource type="Texture2D" uid="uid://ba2xun1c0f6x4" path="res://art/espresso-puck-done.png" id="4_rmd5q"]
 [ext_resource type="Texture2D" uid="uid://df3uxqwbc6ncl" path="res://art/32x32-circle.png" id="6_3woro"]
-[ext_resource type="Texture2D" uid="uid://cywl0jo8j6elu" path="res://art/Space_Key_Light.png" id="7_byje2"]
 [ext_resource type="Texture2D" uid="uid://do84dbxusn65d" path="res://art/handle.png" id="7_xs734"]
 [ext_resource type="Texture2D" uid="uid://bse0syiko5u75" path="res://art/success_indicator_empty.png" id="8_cpfim"]
 [ext_resource type="Texture2D" uid="uid://1jg1ulu5eeyp" path="res://art/espresso-presser.png" id="9_iljwa"]
 [ext_resource type="AudioStream" uid="uid://x2o2vt1uvqo0" path="res://sound/whiff.wav" id="11_kbj0a"]
 [ext_resource type="Texture2D" uid="uid://ba1g0ttfuwek7" path="res://art/coffee-station-64x64.png" id="12_jpa7h"]
 [ext_resource type="AudioStream" uid="uid://dej16mfpp4ar6" path="res://sound/thud.mp3" id="14_b7ioc"]
+[ext_resource type="FontFile" uid="uid://cooklxfw2lwhf" path="res://fonts/PixelOperatorMono.ttf" id="16_kg4sp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_24vq6"]
 size = Vector2(76, 36)
@@ -114,15 +114,21 @@ position = Vector2(590, 35)
 scale = Vector2(2, 2)
 texture = ExtResource("8_cpfim")
 
-[node name="SpaceKeyLight" type="Sprite2D" parent="."]
-position = Vector2(322, 309)
-texture = ExtResource("7_byje2")
-
 [node name="Coffee-station-64x64" type="Sprite2D" parent="."]
 position = Vector2(-102, 254)
 texture = ExtResource("12_jpa7h")
 
 [node name="ThudSoundEffect" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("14_b7ioc")
+
+[node name="InstructionsText" type="Label" parent="."]
+offset_left = 189.0
+offset_top = 300.0
+offset_right = 461.0
+offset_bottom = 370.0
+theme_override_fonts/font = ExtResource("16_kg4sp")
+theme_override_font_sizes/font_size = 32
+text = "Pound! [SPACEBAR]"
+horizontal_alignment = 1
 
 [connection signal="body_entered" from="EspressoPuck/Area2D" to="." method="_on_area_2d_body_entered"]

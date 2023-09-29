@@ -7,7 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://crvcdnjnl5guh" path="res://sound/interact-successful.ogg" id="5_g3u47"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dhwk5"]
-radius = 27.0
+radius = 17.0
 height = 162.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oreqb"]
