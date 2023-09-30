@@ -22,8 +22,8 @@ size = Vector2(72, 639)
 
 [node name="DripCoffeeMiniGame" type="Node2D" node_paths=PackedStringArray("spawnPoints")]
 script = ExtResource("1_3gqi6")
-numberOfBallsRequired = 3
-maxNumberOfBallsAllowed = 5
+numberOfBallsRequired = 2
+maxNumberOfBallsAllowed = 7
 spawnPoints = [NodePath("SpawnPoints/Node2D"), NodePath("SpawnPoints/Node2D2"), NodePath("SpawnPoints/Node2D3"), NodePath("SpawnPoints/Node2D4"), NodePath("SpawnPoints/Node2D5"), NodePath("SpawnPoints/Node2D6"), NodePath("SpawnPoints/Node2D7"), NodePath("SpawnPoints/Node2D8")]
 catcherOneSprite = ExtResource("2_i8584")
 catcherTwoSprite = ExtResource("3_cenpx")

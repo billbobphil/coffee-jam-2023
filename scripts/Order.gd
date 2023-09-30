@@ -129,11 +129,11 @@ func determinePayoutAmount():
 	if(percentComplete > 0.8):
 		#full amount + 10%
 		payoutAmount = basePayoutAmount + (basePayoutAmount * .1);
-	elif(percentComplete > .5):
+	elif(percentComplete > .25):
 		#percentage of base amount flat
 		payoutAmount = basePayoutAmount * percentComplete;
 	else:
 		#percentage of base amount minus 10% of received amount
 		payoutAmount = (basePayoutAmount * percentComplete);
-		payoutAmount = payoutAmount - (payoutAmount * .1);
+		payoutAmount = payoutAmount - (payoutAmount * .05);
 	return snapped(payoutAmount, 0.01);
