@@ -14,7 +14,8 @@ var numberOfBallsActive : int = 0;
 signal coffee_mini_game_completed;
 
 func _ready():
-	numberOfBallsActive = maxNumberOfBallsAllowed;
+#	numberOfBallsActive = maxNumberOfBallsAllowed;
+	pass
 
 func _process(_delta):
 	if(numberOfBallsActive < maxNumberOfBallsAllowed):
@@ -26,9 +27,9 @@ func _on_area_2d_body_entered(body):
 		numberOfBallsCaught += 1;
 		numberOfBallsActive -= 1;
 		body.queue_free();
-		if(numberOfBallsCaught == 2):
+		if(numberOfBallsCaught == 1):
 			get_node("Catcher/Sprite2D").texture = catcherOneSprite;
-		elif(numberOfBallsCaught == 3):
+		elif(numberOfBallsCaught == 2):
 			get_node("Catcher/Sprite2D").texture = catcherTwoSprite;
 		elif(numberOfBallsCaught == numberOfBallsRequired):
 			coffee_mini_game_completed.emit();

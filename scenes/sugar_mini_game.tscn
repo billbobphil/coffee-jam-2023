@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bx4wuilhxywhu"]
+
+[ext_resource type="Script" path="res://scripts/sugar_mini_game.gd" id="1_qr3wd"]
+
+[node name="sugar_mini_game" type="Node2D"]
+script = ExtResource("1_qr3wd")

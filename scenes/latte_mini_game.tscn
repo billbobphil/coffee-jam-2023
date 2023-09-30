@@ -1,0 +1,128 @@
+[gd_scene load_steps=17 format=3 uid="uid://c0vmwbdpk3g1r"]
+
+[ext_resource type="Script" path="res://scripts/latte_mini_game.gd" id="1_4ulix"]
+[ext_resource type="Texture2D" uid="uid://caaemqq2ww1yi" path="res://art/32x32-cube.png" id="2_q3qe2"]
+[ext_resource type="Texture2D" uid="uid://c82h2kjdwcmv5" path="res://art/latte-overhead-2.png" id="2_urtqb"]
+[ext_resource type="Texture2D" uid="uid://df3uxqwbc6ncl" path="res://art/32x32-circle.png" id="3_qnwlt"]
+[ext_resource type="Texture2D" uid="uid://cchu0uwlqgnm" path="res://art/latte-overhead-3.png" id="3_w1cle"]
+[ext_resource type="Texture2D" uid="uid://bse0syiko5u75" path="res://art/success_indicator_empty.png" id="4_4jbl4"]
+[ext_resource type="Texture2D" uid="uid://bhwf6mbq1eluk" path="res://art/latte-overhead-4.png" id="4_8quup"]
+[ext_resource type="FontFile" uid="uid://cooklxfw2lwhf" path="res://fonts/PixelOperatorMono.ttf" id="5_b2yyy"]
+[ext_resource type="AudioStream" uid="uid://crvcdnjnl5guh" path="res://sound/interact-successful.ogg" id="6_lgi0i"]
+[ext_resource type="AudioStream" uid="uid://dya57ek5yhddm" path="res://sound/rejected-order.ogg" id="7_yeys0"]
+[ext_resource type="Texture2D" uid="uid://ctty53p442msy" path="res://art/latte-overhead-1.png" id="8_lm1nu"]
+[ext_resource type="Texture2D" uid="uid://drud02slyghpe" path="res://art/latte-handle.png" id="13_ssopj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_21d3g"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_47vjo"]
+color = Color(0.945098, 0.886275, 0.760784, 1)
+thickness = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tq3m2"]
+bg_color = Color(0.12549, 0.0745098, 0.054902, 0.760784)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_63wmu"]
+bg_color = Color(0.945313, 0.886719, 0.761719, 1)
+
+[node name="LatteMiniGame" type="Node2D"]
+script = ExtResource("1_4ulix")
+speed = 100.0
+windows = Array[Vector2]([Vector2(15, 30), Vector2(25, 45), Vector2(60, 75), Vector2(40, 60), Vector2(75, 90)])
+latteOneTexture = ExtResource("2_urtqb")
+latteTwoTexture = ExtResource("3_w1cle")
+latteThreeTexture = ExtResource("4_8quup")
+
+[node name="Backdrop" type="Sprite2D" parent="."]
+modulate = Color(0.296875, 0.171875, 0.128906, 1)
+position = Vector2(319.5, 178.5)
+scale = Vector2(19.0313, 10.2813)
+texture = ExtResource("2_q3qe2")
+
+[node name="Accent" type="Sprite2D" parent="."]
+modulate = Color(0.667969, 0.421875, 0.273438, 1)
+position = Vector2(72.5, 17.5)
+scale = Vector2(6.03125, 6.03125)
+texture = ExtResource("3_qnwlt")
+
+[node name="Accent2" type="Sprite2D" parent="."]
+modulate = Color(0.816406, 0.617188, 0.472656, 1)
+position = Vector2(120, 84)
+scale = Vector2(3.45313, 3.45313)
+texture = ExtResource("3_qnwlt")
+
+[node name="MinBar" type="ProgressBar" parent="."]
+offset_left = 387.0
+offset_top = 31.0
+offset_right = 413.0
+offset_bottom = 298.0
+theme_override_styles/background = SubResource("StyleBoxFlat_21d3g")
+theme_override_styles/fill = SubResource("StyleBoxLine_47vjo")
+fill_mode = 3
+show_percentage = false
+
+[node name="MaxBar" type="ProgressBar" parent="."]
+offset_left = 387.0
+offset_top = 31.0
+offset_right = 413.0
+offset_bottom = 298.0
+theme_override_styles/background = SubResource("StyleBoxFlat_21d3g")
+theme_override_styles/fill = SubResource("StyleBoxLine_47vjo")
+fill_mode = 3
+show_percentage = false
+
+[node name="ForegroundBar" type="ProgressBar" parent="."]
+offset_left = 386.0
+offset_top = 31.0
+offset_right = 414.0
+offset_bottom = 298.0
+theme_override_styles/background = SubResource("StyleBoxFlat_tq3m2")
+theme_override_styles/fill = SubResource("StyleBoxFlat_63wmu")
+fill_mode = 3
+show_percentage = false
+
+[node name="Indicator_One" type="Sprite2D" parent="."]
+position = Vector2(503, 40)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("4_4jbl4")
+
+[node name="Indicator_Two" type="Sprite2D" parent="."]
+position = Vector2(533, 40)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("4_4jbl4")
+
+[node name="Indicator_Three" type="Sprite2D" parent="."]
+position = Vector2(563, 40)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("4_4jbl4")
+
+[node name="Indicator_Four" type="Sprite2D" parent="."]
+position = Vector2(594, 40)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("4_4jbl4")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 167.0
+offset_top = 312.0
+offset_right = 463.0
+offset_bottom = 335.0
+theme_override_fonts/font = ExtResource("5_b2yyy")
+text = "Release! [SPACEBAR] between the lines"
+
+[node name="SuccessSoundEffect" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_lgi0i")
+volume_db = -5.0
+
+[node name="FailSoundEffect" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_yeys0")
+volume_db = -5.0
+
+[node name="LatteArt" type="Sprite2D" parent="."]
+position = Vector2(283, 196)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("8_lm1nu")
+
+[node name="Latte-handle" type="Sprite2D" parent="."]
+position = Vector2(127, 196)
+texture = ExtResource("13_ssopj")

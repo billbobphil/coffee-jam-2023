@@ -1,10 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://ct3xx5yu7qsas"]
+[gd_scene load_steps=14 format=3 uid="uid://ct3xx5yu7qsas"]
 
 [ext_resource type="Script" path="res://scripts/drip_coffee_mini_game.gd" id="1_3gqi6"]
 [ext_resource type="PackedScene" uid="uid://b5nanus0xc7ci" path="res://scenes/pachinko_nub.tscn" id="1_w3hh1"]
 [ext_resource type="Script" path="res://scripts/Catcher.gd" id="1_y7rfn"]
 [ext_resource type="Texture2D" uid="uid://df3uxqwbc6ncl" path="res://art/32x32-circle.png" id="2_144bq"]
-[ext_resource type="PackedScene" uid="uid://naqel5hrr5dn" path="res://scenes/pachinko_ball.tscn" id="2_h2y81"]
 [ext_resource type="Texture2D" uid="uid://caaemqq2ww1yi" path="res://art/32x32-cube.png" id="2_i25f8"]
 [ext_resource type="Texture2D" uid="uid://cepi7mwidikf1" path="res://art/catcher-one.png" id="2_i8584"]
 [ext_resource type="Texture2D" uid="uid://d21lku5hu7toa" path="res://art/catcher-two.png" id="3_cenpx"]
@@ -21,12 +20,9 @@ size = Vector2(789, 87)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jfuiu"]
 size = Vector2(72, 639)
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_31x8v"]
-bounce = 0.7
-
 [node name="DripCoffeeMiniGame" type="Node2D" node_paths=PackedStringArray("spawnPoints")]
 script = ExtResource("1_3gqi6")
-numberOfBallsRequired = 4
+numberOfBallsRequired = 3
 maxNumberOfBallsAllowed = 5
 spawnPoints = [NodePath("SpawnPoints/Node2D"), NodePath("SpawnPoints/Node2D2"), NodePath("SpawnPoints/Node2D3"), NodePath("SpawnPoints/Node2D4"), NodePath("SpawnPoints/Node2D5"), NodePath("SpawnPoints/Node2D6"), NodePath("SpawnPoints/Node2D7"), NodePath("SpawnPoints/Node2D8")]
 catcherOneSprite = ExtResource("2_i8584")
@@ -249,8 +245,6 @@ position = Vector2(604, 86)
 [node name="PachinkoNub11" parent="PachinkoThings/Row5" instance=ExtResource("1_w3hh1")]
 position = Vector2(-22, 90)
 
-[node name="PachinkoBall" parent="." instance=ExtResource("2_h2y81")]
-
 [node name="WorldBounds" type="Node2D" parent="."]
 
 [node name="Area2D2" type="Area2D" parent="WorldBounds"]
@@ -301,22 +295,6 @@ position = Vector2(513, -66)
 
 [node name="Node2D8" type="Node2D" parent="SpawnPoints"]
 position = Vector2(330, -142)
-
-[node name="PachinkoBall2" parent="." instance=ExtResource("2_h2y81")]
-position = Vector2(192, -80)
-physics_material_override = SubResource("PhysicsMaterial_31x8v")
-
-[node name="PachinkoBall3" parent="." instance=ExtResource("2_h2y81")]
-position = Vector2(429, -83)
-physics_material_override = SubResource("PhysicsMaterial_31x8v")
-
-[node name="PachinkoBall4" parent="." instance=ExtResource("2_h2y81")]
-position = Vector2(49, -47)
-physics_material_override = SubResource("PhysicsMaterial_31x8v")
-
-[node name="PachinkoBall5" parent="." instance=ExtResource("2_h2y81")]
-position = Vector2(514, -37)
-physics_material_override = SubResource("PhysicsMaterial_31x8v")
 
 [node name="CatchSoundEffect" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_rm145")
