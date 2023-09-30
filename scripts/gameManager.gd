@@ -21,6 +21,10 @@ var totalCustomersServed = 0;
 @export var sugarMinigame : PackedScene;
 @export var coffeeMinigame : PackedScene;
 
+@export var tutorialTextOne : Node2D;
+@export var tutorialTextTwo : Node2D;
+@export var tutorialTextThree : Node2D;
+
 var activeMiniGameReference;
 
 func _ready():
@@ -31,6 +35,11 @@ func _ready():
 	timeRemainingBar = get_node("HUD/TimeRemainingBar");
 	dayTimer = dayLength;
 	get_node("OrderManager").payout_triggered.connect(_on_payout_triggered);
+	
+	await get_tree().create_timer(7).timeout;
+	tutorialTextOne.queue_free();
+	tutorialTextTwo.queue_free();
+	tutorialTextThree.queue_free();
 
 func _process(delta):
 	if(dayTimer > 0 && isShopOpen):

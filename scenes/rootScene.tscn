@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://7je3nu0pdsus"]
+[gd_scene load_steps=45 format=3 uid="uid://7je3nu0pdsus"]
 
 [ext_resource type="Script" path="res://scripts/gameManager.gd" id="1_84sy3"]
 [ext_resource type="PackedScene" uid="uid://bhasvup0wqgs5" path="res://scenes/player.tscn" id="1_fb7x5"]
@@ -26,6 +26,18 @@
 [ext_resource type="PackedScene" uid="uid://dcebjpxascjta" path="res://scenes/garbageCan.tscn" id="14_w40hf"]
 [ext_resource type="Texture2D" uid="uid://bkkyatagy8gkp" path="res://art/door-128x32.png" id="15_di38t"]
 [ext_resource type="AudioStream" uid="uid://q655geqvg6ei" path="res://sound/cofee-shop-ambience.mp3" id="22_b4u4q"]
+[ext_resource type="Texture2D" uid="uid://cee1qwajseu4s" path="res://art/arrow-interact.png" id="27_ae12g"]
+[ext_resource type="Texture2D" uid="uid://cu55cg6jjtf7v" path="res://art/espresso-station-64x64.png" id="28_cmd8s"]
+[ext_resource type="Texture2D" uid="uid://wokusc17t2uk" path="res://art/espresso-black-32x32.png" id="29_6clkt"]
+[ext_resource type="Texture2D" uid="uid://b12kekrrevxgw" path="res://art/arrow-dont-interact.png" id="30_suoyt"]
+[ext_resource type="Texture2D" uid="uid://ba1g0ttfuwek7" path="res://art/coffee-station-64x64.png" id="31_5d4hr"]
+[ext_resource type="Texture2D" uid="uid://iw75rva31107" path="res://art/coffee-zero-32x32.png" id="32_q7fhh"]
+[ext_resource type="Texture2D" uid="uid://b4n7u40tuln4e" path="res://art/steamer-station-64x64.png" id="33_ih6tx"]
+[ext_resource type="Texture2D" uid="uid://b2ubjmfquo5e" path="res://art/latte-32x32.png" id="34_p0ymw"]
+[ext_resource type="Texture2D" uid="uid://ed25vlsl47h5" path="res://art/plus-32x32.png" id="35_a1i2f"]
+[ext_resource type="Texture2D" uid="uid://pjm7mjpbs3kn" path="res://art/sugarAndCreamStation-64x64.png" id="36_bq60s"]
+[ext_resource type="Texture2D" uid="uid://c86ddcwxuomva" path="res://art/coffee-one-32x32.png" id="37_l7vbu"]
+[ext_resource type="Texture2D" uid="uid://bww8wo41pguh4" path="res://art/coffee-two-32x32.png" id="38_00nh6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_do34n"]
 bg_color = Color(0.470588, 0.27451, 0.172549, 1)
@@ -45,13 +57,16 @@ size = Vector2(32, 30)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7ivl2"]
 size = Vector2(95, 65)
 
-[node name="Demo" type="Node2D"]
+[node name="Demo" type="Node2D" node_paths=PackedStringArray("tutorialTextOne", "tutorialTextTwo", "tutorialTextThree")]
 process_mode = 3
 script = ExtResource("1_84sy3")
 espressoMinigame = ExtResource("2_wq2en")
 latteMinigame = ExtResource("3_udwo0")
 sugarMinigame = ExtResource("4_enfwy")
 coffeeMinigame = ExtResource("3_fv6t8")
+tutorialTextOne = NodePath("TutorialText_One")
+tutorialTextTwo = NodePath("TutorialText_Two")
+tutorialTextThree = NodePath("TutorialText_Three")
 
 [node name="TileMap" type="TileMap" parent="."]
 modulate = Color(0.615686, 0.615686, 0.615686, 1)
@@ -404,6 +419,189 @@ modulate = Color(0.101563, 0.128906, 0.160156, 1)
 position = Vector2(335, 84.75)
 scale = Vector2(21.0625, 6.60938)
 texture = ExtResource("11_hfdru")
+
+[node name="TutorialText_One" type="Node2D" parent="."]
+position = Vector2(151, 663)
+
+[node name="Sprite2D" type="Sprite2D" parent="TutorialText_One"]
+modulate = Color(0.296875, 0.171875, 0.128906, 1)
+position = Vector2(150.5, 8)
+scale = Vector2(10.0313, 1)
+texture = ExtResource("11_hfdru")
+
+[node name="Label" type="Label" parent="TutorialText_One"]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("2_5e2c6")
+text = "Customers will enter through this door"
+
+[node name="Sprite2D2" type="Sprite2D" parent="TutorialText_One"]
+position = Vector2(-31, 22)
+rotation = 1.96843
+texture = ExtResource("27_ae12g")
+
+[node name="TutorialText_Two" type="Node2D" parent="."]
+position = Vector2(23, 399)
+
+[node name="Sprite2D" type="Sprite2D" parent="TutorialText_Two"]
+modulate = Color(0.296875, 0.171875, 0.128906, 1)
+position = Vector2(121, 16)
+scale = Vector2(7.6875, 1)
+texture = ExtResource("11_hfdru")
+
+[node name="Label" type="Label" parent="TutorialText_Two"]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 240.0
+offset_bottom = 31.0
+theme_override_fonts/font = ExtResource("2_5e2c6")
+text = "Prepare orders in the kitchen"
+
+[node name="Sprite2D2" type="Sprite2D" parent="TutorialText_Two"]
+position = Vector2(5, -2)
+rotation = 0.382613
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("27_ae12g")
+
+[node name="TutorialText_Three" type="Node2D" parent="."]
+position = Vector2(427, 527)
+
+[node name="Sprite2D" type="Sprite2D" parent="TutorialText_Three"]
+modulate = Color(0.296875, 0.171875, 0.128906, 1)
+position = Vector2(97, 8)
+scale = Vector2(6.6875, 1)
+texture = ExtResource("11_hfdru")
+
+[node name="Label" type="Label" parent="TutorialText_Three"]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("2_5e2c6")
+text = "Serve them at their table"
+
+[node name="Recipes" type="Node2D" parent="."]
+
+[node name="Espresso" type="Node2D" parent="Recipes"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Recipes/Espresso"]
+position = Vector2(493, 32)
+texture = ExtResource("28_cmd8s")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Recipes/Espresso"]
+position = Vector2(593, 36)
+texture = ExtResource("29_6clkt")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Recipes/Espresso"]
+position = Vector2(551, 39)
+rotation = 1.5708
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("30_suoyt")
+
+[node name="Coffee" type="Node2D" parent="Recipes"]
+position = Vector2(-443, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="Recipes/Coffee"]
+position = Vector2(493, 32)
+texture = ExtResource("31_5d4hr")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Recipes/Coffee"]
+position = Vector2(593, 36)
+texture = ExtResource("32_q7fhh")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Recipes/Coffee"]
+position = Vector2(551, 39)
+rotation = 1.5708
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("30_suoyt")
+
+[node name="Latte" type="Node2D" parent="Recipes"]
+position = Vector2(0, 77)
+
+[node name="Sprite2D" type="Sprite2D" parent="Recipes/Latte"]
+position = Vector2(493, 32)
+texture = ExtResource("33_ih6tx")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Recipes/Latte"]
+position = Vector2(593, 36)
+texture = ExtResource("34_p0ymw")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Recipes/Latte"]
+position = Vector2(551, 39)
+rotation = 1.5708
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("30_suoyt")
+
+[node name="Sprite2D4" type="Sprite2D" parent="Recipes/Latte"]
+position = Vector2(395, 37)
+texture = ExtResource("29_6clkt")
+
+[node name="Sprite2D5" type="Sprite2D" parent="Recipes/Latte"]
+position = Vector2(436, 39)
+texture = ExtResource("35_a1i2f")
+
+[node name="SugarOne" type="Node2D" parent="Recipes"]
+position = Vector2(-355, 57)
+
+[node name="Sprite2D" type="Sprite2D" parent="Recipes/SugarOne"]
+position = Vector2(493, 32)
+texture = ExtResource("36_bq60s")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Recipes/SugarOne"]
+position = Vector2(593, 36)
+texture = ExtResource("37_l7vbu")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Recipes/SugarOne"]
+position = Vector2(551, 39)
+rotation = 1.5708
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("30_suoyt")
+
+[node name="Sprite2D4" type="Sprite2D" parent="Recipes/SugarOne"]
+position = Vector2(395, 37)
+texture = ExtResource("32_q7fhh")
+
+[node name="Sprite2D5" type="Sprite2D" parent="Recipes/SugarOne"]
+position = Vector2(436, 39)
+texture = ExtResource("35_a1i2f")
+
+[node name="SugarTwo" type="Node2D" parent="Recipes"]
+position = Vector2(-355, 120)
+
+[node name="Sprite2D" type="Sprite2D" parent="Recipes/SugarTwo"]
+position = Vector2(493, 32)
+texture = ExtResource("36_bq60s")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Recipes/SugarTwo"]
+position = Vector2(593, 36)
+texture = ExtResource("38_00nh6")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Recipes/SugarTwo"]
+position = Vector2(551, 39)
+rotation = 1.5708
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("30_suoyt")
+
+[node name="Sprite2D4" type="Sprite2D" parent="Recipes/SugarTwo"]
+position = Vector2(395, 37)
+texture = ExtResource("37_l7vbu")
+
+[node name="Sprite2D5" type="Sprite2D" parent="Recipes/SugarTwo"]
+position = Vector2(436, 39)
+texture = ExtResource("35_a1i2f")
+
+[node name="RecipeText" type="Node2D" parent="."]
+position = Vector2(543, 157)
+
+[node name="Sprite2D" type="Sprite2D" parent="RecipeText"]
+modulate = Color(0.296875, 0.171875, 0.128906, 1)
+position = Vector2(27, 8)
+scale = Vector2(2.3125, 1)
+texture = ExtResource("11_hfdru")
+
+[node name="Label" type="Label" parent="RecipeText"]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("2_5e2c6")
+text = "Recipes"
 
 [connection signal="body_entered" from="Decorations/Door/Area2D" to="Decorations/Door" method="_on_area_2d_body_entered"]
 [connection signal="minigame_started" from="Stations/SugarAndCreamStation" to="." method="_on_minigame_started"]
