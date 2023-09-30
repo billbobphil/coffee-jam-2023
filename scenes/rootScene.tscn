@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://7je3nu0pdsus"]
+[gd_scene load_steps=47 format=3 uid="uid://7je3nu0pdsus"]
 
 [ext_resource type="Script" path="res://scripts/gameManager.gd" id="1_84sy3"]
 [ext_resource type="PackedScene" uid="uid://bhasvup0wqgs5" path="res://scenes/player.tscn" id="1_fb7x5"]
@@ -29,6 +29,7 @@
 [ext_resource type="Texture2D" uid="uid://cee1qwajseu4s" path="res://art/arrow-interact.png" id="27_ae12g"]
 [ext_resource type="Texture2D" uid="uid://cu55cg6jjtf7v" path="res://art/espresso-station-64x64.png" id="28_cmd8s"]
 [ext_resource type="Texture2D" uid="uid://wokusc17t2uk" path="res://art/espresso-black-32x32.png" id="29_6clkt"]
+[ext_resource type="Script" path="res://scripts/LightFlicker.gd" id="29_r85rk"]
 [ext_resource type="Texture2D" uid="uid://b12kekrrevxgw" path="res://art/arrow-dont-interact.png" id="30_suoyt"]
 [ext_resource type="Texture2D" uid="uid://ba1g0ttfuwek7" path="res://art/coffee-station-64x64.png" id="31_5d4hr"]
 [ext_resource type="Texture2D" uid="uid://iw75rva31107" path="res://art/coffee-zero-32x32.png" id="32_q7fhh"]
@@ -38,6 +39,7 @@
 [ext_resource type="Texture2D" uid="uid://pjm7mjpbs3kn" path="res://art/sugarAndCreamStation-64x64.png" id="36_bq60s"]
 [ext_resource type="Texture2D" uid="uid://c86ddcwxuomva" path="res://art/coffee-one-32x32.png" id="37_l7vbu"]
 [ext_resource type="Texture2D" uid="uid://bww8wo41pguh4" path="res://art/coffee-two-32x32.png" id="38_00nh6"]
+[ext_resource type="Texture2D" uid="uid://df3uxqwbc6ncl" path="res://art/32x32-circle.png" id="39_83etd"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_do34n"]
 bg_color = Color(0.470588, 0.27451, 0.172549, 1)
@@ -425,6 +427,7 @@ position = Vector2(151, 663)
 
 [node name="Sprite2D" type="Sprite2D" parent="TutorialText_One"]
 modulate = Color(0.296875, 0.171875, 0.128906, 1)
+light_mask = 0
 position = Vector2(150.5, 8)
 scale = Vector2(10.0313, 1)
 texture = ExtResource("11_hfdru")
@@ -436,6 +439,7 @@ theme_override_fonts/font = ExtResource("2_5e2c6")
 text = "Customers will enter through this door"
 
 [node name="Sprite2D2" type="Sprite2D" parent="TutorialText_One"]
+light_mask = 0
 position = Vector2(-31, 22)
 rotation = 1.96843
 texture = ExtResource("27_ae12g")
@@ -445,6 +449,7 @@ position = Vector2(23, 399)
 
 [node name="Sprite2D" type="Sprite2D" parent="TutorialText_Two"]
 modulate = Color(0.296875, 0.171875, 0.128906, 1)
+light_mask = 0
 position = Vector2(121, 16)
 scale = Vector2(7.6875, 1)
 texture = ExtResource("11_hfdru")
@@ -458,16 +463,68 @@ theme_override_fonts/font = ExtResource("2_5e2c6")
 text = "Prepare orders in the kitchen"
 
 [node name="Sprite2D2" type="Sprite2D" parent="TutorialText_Two"]
+light_mask = 0
 position = Vector2(5, -2)
 rotation = 0.382613
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("27_ae12g")
+
+[node name="Lights" type="Node2D" parent="."]
+
+[node name="PointLight2D" type="PointLight2D" parent="Lights"]
+position = Vector2(616, 695)
+scale = Vector2(5.98437, 5.89063)
+energy = 0.5
+shadow_enabled = true
+texture = ExtResource("39_83etd")
+script = ExtResource("29_r85rk")
+
+[node name="PointLight2D2" type="PointLight2D" parent="Lights"]
+position = Vector2(86, 622)
+scale = Vector2(3.9375, 4.08203)
+energy = 0.3
+shadow_enabled = true
+texture = ExtResource("39_83etd")
+script = ExtResource("29_r85rk")
+
+[node name="PointLight2D3" type="PointLight2D" parent="Lights"]
+position = Vector2(300.75, 576.078)
+scale = Vector2(5.10938, 4.69238)
+energy = 0.3
+shadow_enabled = true
+texture = ExtResource("39_83etd")
+script = ExtResource("29_r85rk")
+
+[node name="PointLight2D4" type="PointLight2D" parent="Lights"]
+position = Vector2(179, 469)
+scale = Vector2(5.10938, 4.69238)
+energy = 0.3
+shadow_enabled = true
+texture = ExtResource("39_83etd")
+script = ExtResource("29_r85rk")
+
+[node name="PointLight2D5" type="PointLight2D" parent="Lights"]
+position = Vector2(460, 480)
+scale = Vector2(3.52344, 3.31494)
+energy = 0.3
+shadow_enabled = true
+texture = ExtResource("39_83etd")
+script = ExtResource("29_r85rk")
+
+[node name="PointLight2D6" type="PointLight2D" parent="Lights"]
+position = Vector2(570, 540)
+scale = Vector2(3.49219, 3.40869)
+energy = 0.3
+shadow_enabled = true
+texture = ExtResource("39_83etd")
+script = ExtResource("29_r85rk")
 
 [node name="TutorialText_Three" type="Node2D" parent="."]
 position = Vector2(427, 527)
 
 [node name="Sprite2D" type="Sprite2D" parent="TutorialText_Three"]
 modulate = Color(0.296875, 0.171875, 0.128906, 1)
+light_mask = 0
 position = Vector2(97, 8)
 scale = Vector2(6.6875, 1)
 texture = ExtResource("11_hfdru")
