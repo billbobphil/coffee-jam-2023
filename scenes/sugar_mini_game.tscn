@@ -1,6 +1,82 @@
-[gd_scene load_steps=2 format=3 uid="uid://bx4wuilhxywhu"]
+[gd_scene load_steps=14 format=3 uid="uid://bx4wuilhxywhu"]
 
 [ext_resource type="Script" path="res://scripts/sugar_mini_game.gd" id="1_qr3wd"]
+[ext_resource type="Texture2D" uid="uid://caaemqq2ww1yi" path="res://art/32x32-cube.png" id="2_jyllp"]
+[ext_resource type="Texture2D" uid="uid://iow88ko3fn4" path="res://art/coffee-swirl-1.png" id="2_pme72"]
+[ext_resource type="Texture2D" uid="uid://b12kekrrevxgw" path="res://art/arrow-dont-interact.png" id="2_x7ijw"]
+[ext_resource type="Texture2D" uid="uid://cee1qwajseu4s" path="res://art/arrow-interact.png" id="3_6qimy"]
+[ext_resource type="PackedScene" uid="uid://ffki1q6gob41" path="res://scenes/arrow.tscn" id="3_hkde4"]
+[ext_resource type="Texture2D" uid="uid://cbsi5cpcgk2tp" path="res://art/coffee-swirl-2.png" id="3_ube3e"]
+[ext_resource type="Texture2D" uid="uid://bl0w30ro4f6rb" path="res://art/coffee-swirl-3.png" id="4_ir2d4"]
+[ext_resource type="Texture2D" uid="uid://r0uibcc4mphp" path="res://art/coffee-swirl-0.png" id="5_8iuw0"]
+[ext_resource type="Texture2D" uid="uid://drud02slyghpe" path="res://art/latte-handle.png" id="6_aidai"]
+[ext_resource type="AudioStream" uid="uid://crvcdnjnl5guh" path="res://sound/interact-successful.ogg" id="7_6a00b"]
+[ext_resource type="AudioStream" uid="uid://d1dycqhjqel8r" path="res://sound/failed-mini-game.ogg" id="8_6jjlw"]
+[ext_resource type="FontFile" uid="uid://cooklxfw2lwhf" path="res://fonts/PixelOperatorMono.ttf" id="13_nisxw"]
 
-[node name="sugar_mini_game" type="Node2D"]
+[node name="sugar_mini_game" type="Node2D" node_paths=PackedStringArray("upArrow", "downArrow", "leftArrow", "rightArrow")]
+position = Vector2(-1, 0)
 script = ExtResource("1_qr3wd")
+upArrow = NodePath("UpArrow")
+downArrow = NodePath("DownArrow")
+leftArrow = NodePath("LeftArrow")
+rightArrow = NodePath("RightArrow")
+requiredInputsToWin = 6
+coffeeSwirlOne = ExtResource("2_pme72")
+coffeeSwirlTwo = ExtResource("3_ube3e")
+coffeeSwirlThree = ExtResource("4_ir2d4")
+inactiveSprite = ExtResource("2_x7ijw")
+activeSprite = ExtResource("3_6qimy")
+
+[node name="Backdrop" type="Sprite2D" parent="."]
+modulate = Color(0.296875, 0.171875, 0.128906, 1)
+position = Vector2(319, 181.5)
+scale = Vector2(19, 10.2188)
+texture = ExtResource("2_jyllp")
+
+[node name="CoffeeSprite" type="Sprite2D" parent="."]
+position = Vector2(323, 177)
+scale = Vector2(2.25, 2.25)
+texture = ExtResource("5_8iuw0")
+
+[node name="CoffeeSprite2" type="Sprite2D" parent="."]
+position = Vector2(71, 175)
+scale = Vector2(1.75, 1.75)
+texture = ExtResource("6_aidai")
+
+[node name="UpArrow" parent="." instance=ExtResource("3_hkde4")]
+position = Vector2(321, 99)
+
+[node name="RightArrow" parent="." instance=ExtResource("3_hkde4")]
+position = Vector2(400, 174)
+rotation = 1.5708
+
+[node name="DownArrow" parent="." instance=ExtResource("3_hkde4")]
+position = Vector2(324, 250)
+rotation = 3.14159
+
+[node name="LeftArrow" parent="." instance=ExtResource("3_hkde4")]
+position = Vector2(246, 173)
+rotation = 4.71239
+
+[node name="SuccessSoundEffect" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_6a00b")
+volume_db = -5.0
+
+[node name="FailureSoundEffect" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_6jjlw")
+volume_db = -10.0
+
+[node name="Label" type="Label" parent="."]
+offset_left = 458.0
+offset_top = 82.0
+offset_right = 619.0
+offset_bottom = 257.0
+theme_override_fonts/font = ExtResource("13_nisxw")
+theme_override_font_sizes/font_size = 32
+text = "Mix!
+[WASD] 
+to 
+match 
+direction"
+horizontal_alignment = 1

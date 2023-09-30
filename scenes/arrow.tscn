@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://ffki1q6gob41"]
+
+[ext_resource type="Script" path="res://scripts/Arrow.gd" id="1_i10k2"]
+[ext_resource type="Texture2D" uid="uid://b12kekrrevxgw" path="res://art/arrow-dont-interact.png" id="2_ljekd"]
+
+[node name="Arrow" type="Node2D"]
+script = ExtResource("1_i10k2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_ljekd")

@@ -369,6 +369,7 @@ position = Vector2(461, 490)
 process_mode = 1
 script = ExtResource("7_buhyn")
 tables = [NodePath("../Tables/Table"), NodePath("../Tables/Table2"), NodePath("../Tables/Table3"), NodePath("../Tables/Table4"), NodePath("../Tables/Table5")]
+timeBetweenSpawns = 7.0
 
 [node name="SpawnPoint" type="Node2D" parent="CustomerManager"]
 position = Vector2(304, 789)
