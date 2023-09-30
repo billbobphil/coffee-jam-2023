@@ -14,7 +14,6 @@ var isOrderTimerStarted : bool = false;
 @export var yFloatMax : float = 4;
 @export var yFloatMin : float = -4;
 @export var floatIncrement : float = 10;
-@export var basePayoutAmount : int = 10;
 var shouldFloat : bool = false;
 var initialPositionY : float;
 var direction : int = 1;
@@ -124,16 +123,30 @@ func orderCompletedSuccessfully(player : Player):
 	self.queue_free();
 
 func determinePayoutAmount():
+	var baseAmount = determineBaseAmount();
 	var percentComplete : float = orderTimer / orderTimeMax;
 	var payoutAmount = 0;	
 	if(percentComplete > 0.8):
-		#full amount + 10%
-		payoutAmount = basePayoutAmount + (basePayoutAmount * .1);
+		payoutAmount = baseAmount;
 	elif(percentComplete > .25):
 		#percentage of base amount flat
-		payoutAmount = basePayoutAmount * percentComplete;
+		payoutAmount = baseAmount * percentComplete;
 	else:
-		#percentage of base amount minus 10% of received amount
-		payoutAmount = (basePayoutAmount * percentComplete);
+		#percentage of base amount minus 5% of received amount
+		payoutAmount = (baseAmount * percentComplete);
 		payoutAmount = payoutAmount - (payoutAmount * .05);
 	return snapped(payoutAmount, 0.01);
+	
+func determineBaseAmount():
+	if(requiredOrder.type == Product.productTypes.espresso):
+		if(requiredOrder.espressoHasSteamedMilk):
+			return 12;
+		return 8;
+	elif(requiredOrder.type == Product.productTypes.coffee):
+		if(requiredOrder.numberOfSugarAndCreamInCoffee == 0):
+			return 10;
+		elif(requiredOrder.numberOfSugarAndCreamInCoffee == 1):
+			return 12;
+		elif(requiredOrder.numberOfSugarAndCreamInCoffee == 2):
+			return 14;
+	return 10;
